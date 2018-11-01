@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
 import routes from './router/index'
 import store from './store'
 import './config/rem'
@@ -14,7 +13,7 @@ import App from './App'
 //   }, false)
 // }
 
-Vue.use(VueRouter, VueAwesomeSwiper)
+Vue.use(VueRouter)
 const router = new VueRouter({
   routes,
   mode: 'hash'
