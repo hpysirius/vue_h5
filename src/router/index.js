@@ -1,15 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import App from '../App'
 
-Vue.use(Router)
+const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
-})
+export default [{
+    path: '/',
+    component: home 
+}]
