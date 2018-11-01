@@ -7,5 +7,4 @@ export const cityGuess = () => fetch('/v1/cities', {
   type: 'guess'
 })
 
-
-export function getUser(){}
+export const getUser = () => {}
