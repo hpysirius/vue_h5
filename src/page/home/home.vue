@@ -7,6 +7,7 @@
             
   	    </div>
         <banner></banner>
+        <Swiper></Swiper>
     </div>
 </template>
 
@@ -17,6 +18,7 @@ import {
  getCategory
 } from "@/service/getData";
 import banner from '../../components/banner'
+import Swiper from '../../components/Swiper'
 
 export default {
     data(){
@@ -41,6 +43,7 @@ export default {
     },
     components: {
         banner,
+        Swiper
     },
     
 }

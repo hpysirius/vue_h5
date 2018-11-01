@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import routes from './router/index'
 import store from './store'
 import './config/rem'
 import App from './App'
+
 // import FastClick from 'fastclick'
 
 // if ('addEventListener' in document) {
@@ -12,7 +14,7 @@ import App from './App'
 //   }, false)
 // }
 
-Vue.use(VueRouter)
+Vue.use(VueRouter, VueAwesomeSwiper)
 const router = new VueRouter({
   routes,
   mode: 'hash'
