@@ -18,6 +18,16 @@
 </script>
 
 <style lang="scss">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+	a {
+		text-decoration: none;
+	}
 	.router-fade-enter-active, .router-fade-leave-active {
 	  	transition: opacity .3s;
 	}

@@ -1,6 +1,6 @@
  <template>
-    <div class="alet_container">
-	    banner
+    <div class="banner">
+	    <img src="http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/Extarnce_banner.png" />
     </div>
 </template>
 
@@ -14,7 +14,6 @@ export default {
         }
     },
     mounted(){
-    
     },
     props: ['alertText'],
     computed: {
@@ -29,3 +28,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.banner {
+    height: 210px;
+}
+.banner img {
+    width: 100%;
+    height: 100%;
+}
+</style>

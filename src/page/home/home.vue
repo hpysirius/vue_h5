@@ -1,13 +1,8 @@
 <template>
-  	<div>
-        1111222
-        {{userInfo}}
-        {{res.msg}}
-  	    <div>
-            
-  	    </div>
-        <banner></banner>
-        <Swiper></Swiper>
+  	<div class="wrap">
+        <Banner></Banner>
+        <Nav></Nav>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -17,7 +12,9 @@ import { mapState, mapMutations } from 'vuex'
 import {
  getCategory
 } from "@/service/getData";
-import banner from '../../components/banner'
+import Banner from '../../components/Banner'
+import Nav from '../../components/Nav'
+import Footer from '../../components/Footer'
 import Swiper from '../../components/Swiper'
 
 export default {
@@ -42,8 +39,10 @@ export default {
         }
     },
     components: {
-        banner,
-        Swiper
+        Banner,
+        Footer,
+        Swiper,
+        Nav
     },
     
 }
@@ -51,4 +50,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrap {
+    height: 100vh;
+    background-color: #F0EFF4;
+}
 </style>
