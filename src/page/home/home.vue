@@ -1,6 +1,12 @@
 <template>
   	<div class="wrap">
-        <Banner></Banner>
+        <Header></Header>
+        <div class="ss_con">
+            <Search></Search>
+            <div class="scorll">
+                <Swiper></Swiper>
+            </div>
+        </div>
         <Nav></Nav>
         <Footer></Footer>
     </div>
@@ -12,6 +18,8 @@ import { mapState, mapMutations } from 'vuex'
 import {
  getCategory
 } from "@/service/getData";
+import Header from '../../components/Header'
+import Search from '../../components/Search'
 import Banner from '../../components/Banner'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -39,6 +47,8 @@ export default {
         }
     },
     components: {
+        Header,
+        Search,
         Banner,
         Footer,
         Swiper,
@@ -52,6 +62,13 @@ export default {
 <style lang="scss" scoped>
 .wrap {
     height: 100vh;
-    background-color: #F0EFF4;
+    background-color: #f3f6fb;
+}
+.ss_con {
+    padding: 10px 8px 0;
+    background-color: #f3f6fb;
+}
+.scorll {
+    padding: 10px 0;
 }
 </style>

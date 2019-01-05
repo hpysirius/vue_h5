@@ -1,0 +1,45 @@
+/*****
+** 样式配置基础参数
+* add by gjun
+**/
+
+/* base var */
+$black: #000;
+$black-less: #1F2533;
+$white: #fff;
+$red: #f44;
+$blue: #4FA0FB;
+$blue-less: #569DFF;
+$blue-disable: #95C6FD;
+$orange: #F7803F;
+$error-tip: #F05D3B;
+$green: #040804;
+$gray: #A1A7B3;
+$gray-light: #e5e5e5;
+$gray-darker:#686E7B;
+$gray-dark: #999;
+$split:#f4f4f4;
+
+/* default colors */
+$text-color: #333;
+$border-color: #E5E5E5;
+$active-color: #e8e8e8;
+$background-color: #f8f8f8;
+
+/* button */
+$button-default-color: $text-color;
+$button-default-background-color: $white;
+$button-default-border-color: $border-color;
+$button-primary-color: $white;
+$button-primary-background-color: #4b0;
+$button-primary-border-color: #4b0;
+$button-danger-color: $white;
+$button-danger-background-color: $red;
+$button-danger-border-color: $red;
+$button-disabled-color: $gray-dark;
+$button-disabled-background-color: $border-color;
+$button-disabled-border-color: $gray-light;
+$button-bottom-action-default-color: $white;
+$button-bottom-action-default-background-color: #f85;
+$button-bottom-action-primary-color: $white;
+$button-bottom-action-primary-background-color: $red;

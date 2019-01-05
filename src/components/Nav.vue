@@ -2,7 +2,7 @@
     <ul class="nav_container">
         <li v-for="item in list" :key="item.id">
             <a href="#">
-                <img :src="item.url">
+                <img :src="item.url" />
                 <p>{{item.text}}</p>
             </a>
         </li>
@@ -17,28 +17,24 @@ export default {
         return{
             list: [
                 {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-GwCert.png',
-                    text: '资格职业证书查询'
+                    url: require('../assets/nav0.png'),
+                    text: '找家政'
                 },
                 {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-ZyCert.png',
-                    text: '岗位培训证书查询'
+                    url: require('../assets/nav1.png'),
+                    text: '技能培训'
                 },
                 {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-CreaditEx.png',
-                    text: '实名认证入口'
+                    url: require('../assets/nav2.png'),
+                    text: '证书查询'
                 },
                 {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-Member.png',
-                    text: '会员单位查询'
+                    url: require('../assets/nav3.png'),
+                    text: '实名查询'
                 },
                 {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-Complaint.png',
-                    text: '投诉入口'
-                },
-                {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-Layer.png',
-                    text: '法律咨询'
+                    url: require('../assets/nav4.png'),
+                    text: '维权服务'
                 }
             ]
         }
@@ -65,24 +61,28 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;/*子元素溢出父容器时换行*/
-    width: calc(100% - 40px);
-    /* height: 200px; */
-    padding: 20px;
+    width: calc(100% - 10px);
+    padding: 5px;
     background: #ffffff;
 }
 .nav_container li {
-    width: calc(100% /3);
+    width: calc(20% - 19px);
+    margin: 0 8px;
     text-align: center;
 }
 .nav_container a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
     text-decoration: none;
 }
 .nav_container a img {
-    width: 40%;
+    width: 44px;
+    height: 44px;
 }
 .nav_container li p {
-    color: #8f8f94;
+    color: #1E2227;;
     font-size: 12px;
-    margin-bottom: 20px;
+    line-height: 20px;
 }
 </style>

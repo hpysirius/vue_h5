@@ -1,0 +1,323 @@
+@import './var.scss';
+
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  font-family: 'vant-icon';
+  src: url('https://img.yzcdn.cn/vant/vant-icon-9b71af.ttf') format('truetype');
+}
+
+.gx-icon {
+  position: relative;
+  display: inline-block;
+  font: normal normal normal 14px/1 "vant-icon";
+  font-size: inherit;
+  text-rendering: auto;
+
+  &___info {
+    color: #fff;
+    left: 100%;
+    top: -.5em;
+    font-size: .5em;
+    padding: 0 .3em;
+    text-align: center;
+    min-width: 1.2em;
+    line-height: 1.2;
+    position: absolute;
+    border-radius: .6em;
+    box-sizing: border-box;
+    background-color: $red;
+    transform: translateX(-50%);
+    font-family: PingFang SC, Helvetica Neue, Arial, sans-serif;
+  }
+
+  &:before {
+    display: inline-block;
+  }
+}
+
+.gx-icon-add-o:before {
+  content: "\F000";
+}
+.gx-icon-add:before {
+  content: "\F001";
+}
+.gx-icon-add2:before {
+  content: "\F002";
+}
+.gx-icon-after-sale:before {
+  content: "\F003";
+}
+.gx-icon-alipay:before {
+  content: "\F004";
+}
+.gx-icon-arrow-left:before {
+  content: "\F005";
+}
+.gx-icon-arrow:before {
+  content: "\F006";
+}
+.gx-icon-balance-details:before {
+  content: "\F007";
+}
+.gx-icon-balance-pay:before {
+  content: "\F008";
+}
+.gx-icon-birthday-privilege:before {
+  content: "\F009";
+}
+.gx-icon-browsing-history:before {
+  content: "\F00A";
+}
+.gx-icon-card:before {
+  content: "\F00B";
+}
+.gx-icon-cart:before {
+  content: "\F00C";
+}
+.gx-icon-cash-back-record:before {
+  content: "\F00D";
+}
+.gx-icon-cash-on-deliver:before {
+  content: "\F00E";
+}
+.gx-icon-certificate:before {
+  content: "\F00F";
+}
+.gx-icon-chat:before {
+  content: "\F010";
+}
+.gx-icon-check:before {
+  content: "\F011";
+}
+.gx-icon-checked:before {
+  content: "\F012";
+}
+.gx-icon-clear:before {
+  content: "\F013";
+}
+.gx-icon-clock:before {
+  content: "\F014";
+}
+.gx-icon-close:before {
+  content: "\F015";
+}
+.gx-icon-completed:before {
+  content: "\F016";
+}
+.gx-icon-contact:before {
+  content: "\F017";
+}
+.gx-icon-coupon:before {
+  content: "\F018";
+}
+.gx-icon-credit-pay:before {
+  content: "\F019";
+}
+.gx-icon-debit-pay:before {
+  content: "\F01A";
+}
+.gx-icon-delete:before {
+  content: "\F01B";
+}
+.gx-icon-description:before {
+  content: "\F01C";
+}
+.gx-icon-discount:before {
+  content: "\F01D";
+}
+.gx-icon-ecard-pay:before {
+  content: "\F01E";
+}
+.gx-icon-edit-data:before {
+  content: "\F01F";
+}
+.gx-icon-edit:before {
+  content: "\F020";
+}
+.gx-icon-exchange-record:before {
+  content: "\F021";
+}
+.gx-icon-exchange:before {
+  content: "\F022";
+}
+.gx-icon-fail:before {
+  content: "\F023";
+}
+.gx-icon-free-postage:before {
+  content: "\F024";
+}
+.gx-icon-gift-card-pay:before {
+  content: "\F025";
+}
+.gx-icon-gift-card:before {
+  content: "\F026";
+}
+.gx-icon-gift:before {
+  content: "\F027";
+}
+.gx-icon-gold-coin:before {
+  content: "\F028";
+}
+.gx-icon-goods-collect:before {
+  content: "\F029";
+}
+.gx-icon-home:before {
+  content: "\F02A";
+}
+.gx-icon-hot-sale:before {
+  content: "\F02B";
+}
+.gx-icon-hot:before {
+  content: "\F02C";
+}
+.gx-icon-info-o:before {
+  content: "\F02D";
+}
+.gx-icon-like-o:before {
+  content: "\F02E";
+}
+.gx-icon-like:before {
+  content: "\F02F";
+}
+.gx-icon-location:before {
+  content: "\F030";
+}
+.gx-icon-logistics:before {
+  content: "\F031";
+}
+.gx-icon-member-day-privilege:before {
+  content: "\F032";
+}
+.gx-icon-more-o:before {
+  content: "\F033";
+}
+.gx-icon-more:before {
+  content: "\F034";
+}
+.gx-icon-new-arrival:before {
+  content: "\F035";
+}
+.gx-icon-new:before {
+  content: "\F036";
+}
+.gx-icon-other-pay:before {
+  content: "\F037";
+}
+.gx-icon-passed:before {
+  content: "\F038";
+}
+.gx-icon-password-not-view:before {
+  content: "\F039";
+}
+.gx-icon-password-view:before {
+  content: "\F03A";
+}
+.gx-icon-pause:before {
+  content: "\F03B";
+}
+.gx-icon-peer-pay:before {
+  content: "\F03C";
+}
+.gx-icon-pending-deliver:before {
+  content: "\F03D";
+}
+.gx-icon-pending-evaluate:before {
+  content: "\F03E";
+}
+.gx-icon-pending-orders:before {
+  content: "\F03F";
+}
+.gx-icon-pending-payment:before {
+  content: "\F040";
+}
+.gx-icon-phone:before {
+  content: "\F041";
+}
+.gx-icon-photo:before {
+  content: "\F042";
+}
+.gx-icon-photograph:before {
+  content: "\F043";
+}
+.gx-icon-play:before {
+  content: "\F044";
+}
+.gx-icon-point-gift:before {
+  content: "\F045";
+}
+.gx-icon-points-mall:before {
+  content: "\F046";
+}
+.gx-icon-points:before {
+  content: "\F047";
+}
+.gx-icon-qr-invalid:before {
+  content: "\F048";
+}
+.gx-icon-qr:before {
+  content: "\F049";
+}
+.gx-icon-question:before {
+  content: "\F04A";
+}
+.gx-icon-receive-gift:before {
+  content: "\F04B";
+}
+.gx-icon-records:before {
+  content: "\F04C";
+}
+.gx-icon-search:before {
+  content: "\F04D";
+}
+.gx-icon-send-gift:before {
+  content: "\F04E";
+}
+.gx-icon-setting:before {
+  content: "\F04F";
+}
+.gx-icon-share:before {
+  content: "\F050";
+}
+.gx-icon-shop-collect:before {
+  content: "\F051";
+}
+.gx-icon-shop:before {
+  content: "\F052";
+}
+.gx-icon-shopping-cart:before {
+  content: "\F053";
+}
+.gx-icon-sign:before {
+  content: "\F054";
+}
+.gx-icon-stop:before {
+  content: "\F055";
+}
+.gx-icon-success:before {
+  content: "\F056";
+}
+.gx-icon-tosend:before {
+  content: "\F057";
+}
+.gx-icon-underway:before {
+  content: "\F058";
+}
+.gx-icon-upgrade:before {
+  content: "\F059";
+}
+.gx-icon-value-card:before {
+  content: "\F05A";
+}
+.gx-icon-wap-home:before {
+  content: "\F05B";
+}
+.gx-icon-wap-nav:before {
+  content: "\F05C";
+}
+.gx-icon-warn:before {
+  content: "\F05D";
+}
+.gx-icon-wechat:before {
+  content: "\F05E";
+}

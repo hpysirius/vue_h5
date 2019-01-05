@@ -4,9 +4,6 @@
             <div class="swiper-slide" :key="item.id" v-for="item in banners">
                 <img :src="item" width="100%" height="100%">
             </div>
-            <div class="swiper-pagination"  slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
             <div class="swiper-scrollbar"   slot="scrollbar"></div>
          </swiper>
     </div>
@@ -22,9 +19,9 @@ export default {
         return{
             a: 1,
             banners: [
-                'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=642797576,3722215470&fm=173&app=49&f=JPEG?w=218&h=146&s=06C39A43C6013555116948B80300E090',
-                'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=669898793,2439508718&fm=173&app=25&f=JPEG?w=218&h=146&s=7EA19F470FFB1E0508489807030080C2', 
-                'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4169999273,4207642710&fm=173&app=25&f=JPEG?w=218&h=146&s=2C409F4FE03ABE7F12780CAB0300A002' 
+                require('../assets/banner.png'),
+                require('../assets/banner.png'),
+                require('../assets/banner.png'),
             ],
             notNextTick: true,
             swiperOption: {
@@ -36,11 +33,6 @@ export default {
                 spaceBetween: 30,
                 preventClicksPropagation: true,//阻止click冒泡。拖动Swiper时阻止click事件。
                 simulateTouch: false,//鼠标模拟手机触摸。默认为true，Swiper接受鼠标点击、拖动。
-                pagination: {
-                    el: '.swiper-pagination',
-                },
-                prevButton: '.swiper-button-prev',
-                nextButton: '.swiper-button-next',
                 on: {
                     touchEnd: function (event) {
                     //你的事件
