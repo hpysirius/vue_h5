@@ -21,20 +21,6 @@ import { mapState, mapMutations } from 'vuex'
 export default {
     data(){
         return{
-            list: [
-                {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-NurseFindJob.png',
-                    text: '家政员求职'
-                },
-                {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-companyJoin.png',
-                    text: '公司入驻'
-                },
-                {
-                    url: 'http://cx.jztx.com/cx/Content/Templates/Jztx/WeiXin/img/icon-userCenter.png',
-                    text: '个人中心'
-                }
-            ]
         }
     },
     mounted(){
@@ -78,16 +64,17 @@ export default {
     text-align: center;
 }
 .f_main_icon {
-    background: url('../assets/f_home.png') no-repeat center center;
+    background: url('../assets/f_home.png') no-repeat;
 }
 .f_me_icon {
-    background: url('../assets/f_me.png') no-repeat center center;
+    background: url('../assets/f_me.png') no-repeat;
 }
 .f_icon {
     display: block;
     width: 100%;
     height: 22px;
     background-size: 22px 22px;
+    background-position: center center;
 }
 .f_nav span {
     font-size: 11px;

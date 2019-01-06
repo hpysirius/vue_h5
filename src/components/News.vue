@@ -6,19 +6,18 @@
         </div>
         <ul class="news_list">
             <li class="news_li">
-                <h3 class="news_tit">技能培训合格家政人员名单公示</h3>
-                <p class="news_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…</p>
-                <p class="news_time">2019-01-04 23:23:09</p>
+                
             </li>
-            <li class="news_li">
-                <h3 class="news_tit">技能培训合格家政人员名单公示</h3>
-                <p class="news_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…</p>
-                <p class="news_time">2019-01-04 23:23:09</p>
-            </li>
-            <li class="news_li">
-                <h3 class="news_tit">技能培训合格家政人员名单公示</h3>
-                <p class="news_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…</p>
-                <p class="news_time">2019-01-04 23:23:09</p>
+            <li v-for="item in list" :key="item.id">
+                <a href="#">
+                    <img :src="item.url" />
+                    <p>{{item.text}}</p>
+
+                    <h3 class="news_tit">{{item.tit}}</h3>
+                    <p class="news_desc">{{item.desc}}</p>
+                    <img v-show="item.img" class="news_img" :src="item.img" />
+                    <p class="news_time">{{item.date}}</p>
+                </a>
             </li>
         </ul>
     </div>
@@ -30,7 +29,20 @@ import { mapState, mapMutations } from 'vuex'
 export default {
     data(){
         return{
-            list: []
+            list: [
+                {
+                    id: 0,
+                    tit: '技能培训合格家政人员名单公示',
+                    desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
+                    date: '2019-01-04 23:23:09'
+                },
+                {
+                    id: 1,
+                    tit: '技能培训合格家政人员名单公示',
+                    img: require('../assets/banner.png'),
+                    date: '2019-01-04 23:23:09'
+                }
+            ]
         }
     },
     mounted(){
@@ -104,5 +116,9 @@ export default {
     line-height: 30px;
     font-size: 13px;
     color: #CECECE;
+}
+.news_img{
+    width: 343px;
+    height: 120px;
 }
 </style>

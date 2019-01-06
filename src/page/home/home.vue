@@ -81,6 +81,6 @@ export default {
     overflow-y: auto;
 }
 .wap_scroll {
-    margin-top: 44px;
+    margin: 44px 0 53px;
 }
 </style>
