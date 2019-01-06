@@ -1,9 +1,15 @@
  <template>
     <ul class="footer_container">
-        <li v-for="item in list" :key="item.id">
-            <a href="#">
-                <img :src="item.url">
-                <p>{{item.text}}</p>
+        <li class="f_li">
+            <a class="f_nav f_main">
+                <i class="f_icon f_main_icon"></i>
+                <span>主页</span>
+            </a>
+        </li>
+        <li class="f_li">
+            <a class="f_nav f_main">
+                <i class="f_icon f_me_icon"></i>
+                <span>个人中心</span>
             </a>
         </li>
     </ul>
@@ -50,28 +56,44 @@ export default {
 
 <style scoped>
 .footer_container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     display: flex;
-    justify-content: space-between;
-    flex-flow: row wrap; /*子元素溢出父容器时换行*/
-    width: calc(100% - 40px);
-    padding: 20px;
-    margin-top: 10px;
+    width: 100%;
+    padding: 8px 0 0;
+    box-shadow: inset 0 1px 0 0 #DFDFDF;
     background: #ffffff;
 }
-.footer_container li {
-    width: calc(100% /3);
+.f_nav {
+    display: inline-block;
+    width: 100%;
+    font-size: 11px;
+    color: #333;
+    text-align: center;
+    line-height: 22px;
+}
+.f_li {
+    width: 50%;
     text-align: center;
 }
-.footer_container a {
-    text-decoration: none;
+.f_main_icon {
+    background: url('../assets/f_home.png') no-repeat center center;
 }
-.footer_container a img {
-    width: 40%;
+.f_me_icon {
+    background: url('../assets/f_me.png') no-repeat center center;
 }
-.footer_container li p {
-    color: #8f8f94;
-    font-size: 12px;
-    margin-bottom: 20px;
-    
+.f_icon {
+    display: block;
+    width: 100%;
+    height: 22px;
+    background-size: 22px 22px;
 }
+.f_nav span {
+    font-size: 11px;
+    color: #333;
+    text-align: center;
+    line-height: 22px;
+}
+
 </style>

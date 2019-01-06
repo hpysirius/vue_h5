@@ -1,13 +1,16 @@
 <template>
   	<div class="wrap">
         <Header></Header>
-        <div class="ss_con">
-            <Search></Search>
-            <div class="scorll">
-                <Swiper></Swiper>
+        <div class="wap_scroll">
+            <div class="ss_con">
+                <Search></Search>
+                <div class="scorll">
+                    <Swiper></Swiper>
+                </div>
             </div>
+            <Nav></Nav>
+            <News></News>
         </div>
-        <Nav></Nav>
         <Footer></Footer>
     </div>
 </template>
@@ -24,6 +27,7 @@ import Banner from '../../components/Banner'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
 import Swiper from '../../components/Swiper'
+import News from '../../components/News'
 
 export default {
     data(){
@@ -52,6 +56,7 @@ export default {
         Banner,
         Footer,
         Swiper,
+        News,
         Nav
     },
     
@@ -61,6 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrap {
+    width: 100%;
     height: 100vh;
     background-color: #f3f6fb;
 }
@@ -70,5 +76,11 @@ export default {
 }
 .scorll {
     padding: 10px 0;
+}
+.wap_scroll {
+    overflow-y: auto;
+}
+.wap_scroll {
+    margin-top: 44px;
 }
 </style>

@@ -62,7 +62,7 @@ export default {
     justify-content: space-between;
     flex-flow: row wrap;/*子元素溢出父容器时换行*/
     width: calc(100% - 10px);
-    padding: 5px;
+    padding: 16px 5px;
     background: #ffffff;
 }
 .nav_container li {
