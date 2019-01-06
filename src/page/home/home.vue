@@ -1,6 +1,6 @@
 <template>
   	<div class="wrap">
-        <Header></Header>
+        <Header title="宣汉家政平台"></Header>
         <div class="wap_scroll">
             <div class="ss_con">
                 <Search></Search>
@@ -79,8 +79,6 @@ export default {
 }
 .wap_scroll {
     overflow-y: auto;
-}
-.wap_scroll {
     margin: 44px 0 53px;
 }
 </style>

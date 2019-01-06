@@ -1,6 +1,6 @@
  <template>
     <div class="header_container">
-        宣汉家政平台
+        {{title}}
     </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     mounted(){
     
     },
-    props: ['alertText'],
+    props: ['title'],
     computed: {
         ...mapState([
             'count'
@@ -44,7 +44,6 @@ export default {
     color: #1E2227;
     text-align: center;
     line-height: 44px;
-    // box-shadow: 0 1px 0 0 #DFDFDF;
     &:after {
         @include border-retina(bottom, #DFDFDF);
     }

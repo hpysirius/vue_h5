@@ -1,15 +1,14 @@
 import home from '../page/home/home'
-const hello = r => require.ensure([], () => r(require('../page/home/home')), 'home')
+const news = r => require.ensure([], () => r(require('../page/news/index')), 'news')
 
-// const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
-
-export default [{
-  path: '/',
-  component: home
-},
-{
-  path: '/hello',
-  component: hello
-}
-
+export default
+[
+  {
+    path: '/',
+    component: home
+  },
+  {
+    path: '/news',
+    component: news
+  }
 ]

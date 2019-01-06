@@ -2,7 +2,7 @@
     <div class="news_container">
         <div class="new_nav">
             <span>行业咨询</span>
-            <a class="link"></a>
+            <router-link to="./news" class="link"></router-link>
         </div>
         <ul class="news_list">
             <li 
