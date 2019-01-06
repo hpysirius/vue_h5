@@ -5,14 +5,11 @@
             <a class="link"></a>
         </div>
         <ul class="news_list">
-            <li class="news_li">
-                
-            </li>
-            <li v-for="item in list" :key="item.id">
+            <li 
+                v-for="(item, index) in list" :key="item.id" 
+                :class="index < list.length - 1 ? 'news_li' : ''"
+            >
                 <a href="#">
-                    <img :src="item.url" />
-                    <p>{{item.text}}</p>
-
                     <h3 class="news_tit">{{item.tit}}</h3>
                     <p class="news_desc">{{item.desc}}</p>
                     <img v-show="item.img" class="news_img" :src="item.img" />
@@ -92,7 +89,7 @@ export default {
     }
 }
 .news_list {
-    padding: 0 16px;
+    padding: 2px 16px;
 }
 .news_li {
     position: relative;
