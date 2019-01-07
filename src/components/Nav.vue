@@ -1,10 +1,10 @@
  <template>
     <ul class="nav_container">
         <li v-for="item in list" :key="item.id">
-            <a href="#">
-                <img :src="item.url" />
+            <router-link :to="item.url">
+                <img :src="item.imgUrl" />
                 <p>{{item.text}}</p>
-            </a>
+            </router-link>
         </li>
     </ul>
 </template>
@@ -17,24 +17,29 @@ export default {
         return{
             list: [
                 {
-                    url: require('../assets/nav0.png'),
-                    text: '找家政'
+                    imgUrl: require('../assets/nav0.png'),
+                    text: '找家政',
+                    url: '',
                 },
                 {
-                    url: require('../assets/nav1.png'),
-                    text: '技能培训'
+                    imgUrl: require('../assets/nav1.png'),
+                    text: '技能培训',
+                    url: './skills',
                 },
                 {
-                    url: require('../assets/nav2.png'),
-                    text: '证书查询'
+                    imgUrl: require('../assets/nav2.png'),
+                    text: '证书查询',
+                    url: '',
                 },
                 {
-                    url: require('../assets/nav3.png'),
-                    text: '实名查询'
+                    imgUrl: require('../assets/nav3.png'),
+                    text: '实名查询',
+                    url: '',
                 },
                 {
-                    url: require('../assets/nav4.png'),
-                    text: '维权服务'
+                    imgUrl: require('../assets/nav4.png'),
+                    text: '维权服务',
+                    url: '',
                 }
             ]
         }
