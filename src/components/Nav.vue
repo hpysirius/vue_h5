@@ -29,7 +29,7 @@ export default {
                 {
                     imgUrl: require('../assets/nav2.png'),
                     text: '证书查询',
-                    url: '',
+                    url: './credentials',
                 },
                 {
                     imgUrl: require('../assets/nav3.png'),
