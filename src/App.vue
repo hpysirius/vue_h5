@@ -34,4 +34,13 @@
 	.router-fade-enter, .router-fade-leave-active {
 	  	opacity: 0;
 	}
+	.van-tabs__line {
+		// z-index: 1;
+		// left: 0;
+		// bottom: 15px;
+		height: 2px!important;
+		// position: absolute;
+		// border-radius: 3px;
+		background-color: #00BEAF!important;
+	}
 </style>
