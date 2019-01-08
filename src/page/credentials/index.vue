@@ -29,11 +29,30 @@
                             />
                         </div>
                     </van-cell-group>
-                    <div class="btn_wrap">
-                        <van-button size="large">查询</van-button>
-                    </div>
                 </van-tab>
-                <van-tab title="证书查询"></van-tab>
+                <van-tab title="证书查询">
+                    <van-cell-group class="input_con">
+                        <div class="input_wrap">
+                            <van-field
+                                v-model="username"
+                                label="证书编号"
+                                placeholder="请输入证书编号"
+                                :error="false"
+                            />
+                        </div>
+                        <div class="input_wrap">
+                            <van-field
+                                v-model="phone"
+                                label="姓名"
+                                placeholder="请输入姓名"
+                                :error="false"
+                            />
+                        </div>
+                    </van-cell-group>
+                </van-tab>
+                <div class="btn_wrap">
+                    <van-button size="large">查询</van-button>
+                </div>
             </van-tabs>
             <p class="cred_desc">
                 可查询到家政协会认证分发的相关技能培训证书，查询内容包含技能名

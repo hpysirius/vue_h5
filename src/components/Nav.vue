@@ -34,7 +34,7 @@ export default {
                 {
                     imgUrl: require('../assets/nav3.png'),
                     text: '实名查询',
-                    url: '',
+                    url: './inquiry',
                 },
                 {
                     imgUrl: require('../assets/nav4.png'),
