@@ -39,7 +39,7 @@ export default {
                 {
                     imgUrl: require('../assets/nav4.png'),
                     text: '维权服务',
-                    url: '',
+                    url: './complain',
                 }
             ]
         }
