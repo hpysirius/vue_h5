@@ -23,7 +23,7 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '家政人员查询',
                     desc: '实名认证，服务经历，服务评价，技能证书',
-                    url: '',
+                    url: './staff',
                 },
                 {
                     imgUrl: require('../assets/banner.png'),
