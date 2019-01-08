@@ -29,7 +29,7 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '家政企业查询',
                     desc: '家政公司星级，服务类型，评价信息',
-                    url: '',
+                    url: './company',
                 }
             ]
         }

@@ -1,12 +1,12 @@
 <template>
   	<div>
-        <Header title="家政人员查询"></Header>
+        <Header title="家政企业查询"></Header>
         <div class="wap_scroll">
             <div class="st_search">
                 <van-row>
                     <van-col span="18">
                         <van-cell-group>
-                            <van-field v-model="value" placeholder="请输入姓名或身份证号查询" />
+                            <van-field v-model="value" placeholder="请输入企业名称查询" />
                         </van-cell-group>
                     </van-col>
                     <van-col span="6">
@@ -17,7 +17,10 @@
             <ul class="st_list">
                 <li class="st_li" v-for="item in list" :key="item.id">
                     <p>
-                        <span>姓   名：</span>{{item.name}}
+                        <span>企业名称：</span>{{item.companyname}}
+                    </p>
+                    <p>
+                        <span>信用代码：</span>{{item.code}}
                         <van-tag 
                             :color="AUTHSTSTUS[item.status].color" 
                             plain
@@ -25,7 +28,7 @@
                         >
                         {{AUTHSTSTUS[item.status].name}}</van-tag>
                     </p>
-                    <p><span>身份证号：</span>{{item.IDcard}}</p>
+                    <p><span>企业法人：</span>{{item.corporation}}</p>
                 </li>
             </ul>
         </div>
@@ -52,16 +55,18 @@ export default {
             list: [
                 {
                     id: 1,
-                    name: '张小二',
-                    IDcard: '510129********6756',
+                    companyname: '成都市ZZZ家政服务有限公司',
+                    code: '510129********6756',
+                    corporation: '张小二',
                     status: '1'
                 },
                 {
                     id: 2,
-                    name: '张小二',
-                    IDcard: '510129********6756',
+                    companyname: '成都市ZZZ家政服务有限公司',
+                    code: '510129********6756',
+                    corporation: '张小二',
                     status: '0'
-                }
+                },
             ]
         }
     },
@@ -118,7 +123,6 @@ export default {
 }
 .st_li {
     position: relative;
-    height: 54px;
     padding: 16px;
     font-size: 15px;
     background: #fff;

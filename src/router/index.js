@@ -4,6 +4,7 @@ const skills = r => require.ensure([], () => r(require('../page/skills/index')),
 const credentials = r => require.ensure([], () => r(require('../page/credentials/index')), 'credentials')
 const inquiry = r => require.ensure([], () => r(require('../page/inquiry/index')), 'inquiry')
 const staff = r => require.ensure([], () => r(require('../page/inquiry/staff')), 'staff')
+const company = r => require.ensure([], () => r(require('../page/inquiry/company')), 'company')
 
 export default
 [
@@ -30,5 +31,9 @@ export default
   {
     path: '/staff',
     component: staff
+  },
+  {
+    path: '/company',
+    component: company
   }
 ]
