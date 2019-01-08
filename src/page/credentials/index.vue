@@ -2,18 +2,21 @@
   	<div>
         <Header title="证书查询"></Header>
         <div class="wap_scroll">
-            <Skill></Skill>
+            <van-button type="default">默认按钮</van-button>
         </div>
         <Footer></Footer>
     </div>
 </template>
 
 <script>
-
-import {mapState, mapMutations} from 'vuex'
+import Vue from 'vue';
+import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Skill from '../../components/Skill'
+import { Button, Cell } from 'vant'
+
+Vue.use(Button);
 export default {
     data(){
         return{
