@@ -1,19 +1,20 @@
  <template>
     <div class="swiper-box">
-        <swiper :options="swiperOption" :not-next-tick="notNextTick" ref="mySwiper" @someSwiperEvent="callback">
-            <div class="swiper-slide" :key="item.id" v-for="item in banners">
-                <img :src="item" width="100%" height="100%">
-            </div>
-            <div class="swiper-scrollbar"   slot="scrollbar"></div>
-         </swiper>
+        <van-swipe :autoplay="3000">
+            <van-swipe-item v-for="(image, index) in banners" :key="index">
+                <img :src="image" />
+            </van-swipe-item>
+        </van-swipe>
     </div>
 </template>
 
 <script>
-
+import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
+import { Swipe, SwipeItem } from 'vant';
+
+Vue.use(Swipe).use(SwipeItem);
+
 export default {
     data(){
         return{
@@ -51,8 +52,6 @@ export default {
         ]),
     },
     components: {
-        swiper,
-        swiperSlide
     },
     methods: {
         closeTip(){
@@ -65,75 +64,16 @@ export default {
 }
 </script>
 
-<style>
-  .swiper-box .swiper {
-    width: 100%;
-    height: 100%;
-  }
- 
-  .swiper-box .swiper-pagination {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
- 
-  .swiper .swiper-slide {
-    background-color: #ffffff;
-    box-shadow: 0.02rem 0.1rem 1.78rem 0.02rem rgba(0, 0, 0, 0.09);
-  }
- 
-  .item-img {
-    width: 100%;
-    height: 17.5rem;
-    position: relative;
-  }
- 
-  .item-title {
-    position: absolute;
-    right: 2rem;
-    bottom: 0.5rem;
-    font-size: 1.7rem;
-    color: #d3a359;
-  }
- 
-  .b {
-    background-color: #d3a359;
-    width: 2rem;
-    height: 0.2rem;
-    position: absolute;
-    right: 2rem;
-    bottom: 0;
-  }
- 
-  .item-text {
-    width: 100%;
-    height: 17.5rem;
-    position: relative;
-  }
- 
-  .item-text p {
-    width: 80%;
-    height: 15.5rem;
-    margin: 0 auto;
-    padding: 2rem 0 0;
-    line-height: 2rem;
-  }
- 
-  .item-btn {
-    width: 7.5rem;
-    height: 2.5rem;
-    border-radius: 0.3rem;
-    border: solid 0.1rem #d3a359;
-    background-color: #ffffff;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 4rem;
-    margin: auto;
-    font-size: 1.2rem;
-    color: #d3a359;
-  }
+<style lang="scss">
+.swiper-box {
+    height: 140px;
+    .van-swipe {
+        height: 100%;
+        img {
+            height: 100%;
+        }
+    }
+}
 </style>
 
 

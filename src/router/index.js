@@ -6,6 +6,7 @@ const inquiry = r => require.ensure([], () => r(require('../page/inquiry/index')
 const staff = r => require.ensure([], () => r(require('../page/inquiry/staff')), 'staff')
 const company = r => require.ensure([], () => r(require('../page/inquiry/company')), 'company')
 const complain = r => require.ensure([], () => r(require('../page/complain/index')), 'complain')
+const comp = r => require.ensure([], () => r(require('../page/complain/comp')), 'comp')
 
 export default
 [
@@ -40,5 +41,9 @@ export default
   {
     path: '/complain',
     component: complain
+  },
+  {
+    path: '/comp',
+    component: comp
   }
 ]
