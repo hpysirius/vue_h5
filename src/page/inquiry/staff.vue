@@ -118,7 +118,6 @@ export default {
 }
 .st_li {
     position: relative;
-    height: 54px;
     padding: 16px;
     font-size: 15px;
     background: #fff;

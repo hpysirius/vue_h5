@@ -3,7 +3,7 @@
         <Header title="宣汉家政平台"></Header>
         <div class="wap_scroll">
             <div class="ss_con">
-                <van-search placeholder="请输入搜索关键词" v-model="value" />
+                <!-- <van-search placeholder="请输入搜索关键词" v-model="value" /> -->
                 <div class="scorll_wrap">
                     <Swiper></Swiper>
                 </div>
@@ -72,7 +72,7 @@ export default {
     background-color: #f3f6fb;
 }
 .ss_con {
-    padding: 10px 8px 0;
+    padding: 0 8px;
     background-color: #f3f6fb;
     .van-search {
         padding: 0;

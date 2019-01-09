@@ -4,14 +4,18 @@
         <div class="wap_scroll">
             <h3 class="com_tit">投诉信息</h3>
             <div class="com_con">
-
+                
+                <van-radio-group v-model="radio">
+                    <van-radio name="1">单选框 1</van-radio>
+                    <van-radio name="2">单选框 2</van-radio>
+                </van-radio-group>
             </div>
         </div>
         <Footer></Footer>
     </div>
 </template>
 <script>
-
+import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'

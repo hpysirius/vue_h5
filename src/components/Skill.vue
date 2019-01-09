@@ -81,6 +81,7 @@ export default {
     padding: 7px 2px 0 10px;
 }
 .sk_txt h3{
+    font-weight: normal;
     font-size: 15px;
     color: #1E2227;
     line-height: 20px;
