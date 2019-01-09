@@ -64,6 +64,7 @@
 
 <script>
 import Vue from 'vue';
+import { RadioGroup, Radio } from 'vant';
 import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -71,9 +72,11 @@ import Skill from '../../components/Skill'
 import { Tab, Tabs, Swipe, SwipeItem, Field, Button } from 'vant'
 
 Vue.use(Button);
+Vue.use(Field);
 Vue.use(Tab).use(Tabs);
 Vue.use(Swipe).use(SwipeItem);
-Vue.use(Field);
+Vue.use(RadioGroup);
+Vue.use(Radio);
 export default {
     data(){
         return{

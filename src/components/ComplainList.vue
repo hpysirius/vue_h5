@@ -23,13 +23,13 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '投诉',
                     desc: '雇主，家政人员，家政公司投诉',
-                    url: './staff',
+                    url: './comp',
                 },
                 {
                     imgUrl: require('../assets/banner.png'),
                     tit: '法律咨询',
                     desc: '法律专家咨询，留言咨询',
-                    url: './company',
+                    url: './low',
                 },
                 {
                     imgUrl: require('../assets/banner.png'),
