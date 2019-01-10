@@ -35,7 +35,7 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '合同模版',
                     desc: '劳动合同，服务合同模版下载',
-                    url: './company',
+                    url: './contract',
                 },
                 {
                     imgUrl: require('../assets/banner.png'),
