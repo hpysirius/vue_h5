@@ -43,4 +43,13 @@
 		// border-radius: 3px;
 		background-color: #00BEAF!important;
 	}
+	.van-radio .van-icon-checked {
+		color: #00BEAF!important;
+	}
+	.van-button--plain.van-button--primary {
+		color: #00BEAF!important;
+	}
+	.van-button--primary {
+		    border: 1px solid #00BEAF!important;
+	}
 </style>
