@@ -29,7 +29,7 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '找家政企业',
                     desc: '查找认证的家政企业',
-                    url: './low',
+                    url: './findcompany',
                 },
                 {
                     imgUrl: require('../assets/banner.png'),

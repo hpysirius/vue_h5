@@ -11,6 +11,7 @@ const low = r => require.ensure([], () => r(require('../page/complain/low')), 'l
 const contract = r => require.ensure([], () => r(require('../page/complain/contract')), 'contract')
 const find = r => require.ensure([], () => r(require('../page/find/index')), 'find')
 const person = r => require.ensure([], () => r(require('../page/find/person')), 'person')
+const findcompany = r => require.ensure([], () => r(require('../page/find/findcompany')), 'findcompany')
 
 export default
 [
@@ -65,5 +66,9 @@ export default
   {
     path: '/person',
     component: person
+  },
+  {
+    path: '/findcompany',
+    component: findcompany
   }
 ]
