@@ -26,7 +26,7 @@
                                     />
                                 </p>
                                 <p class="phone">
-                                    <van-icon name="phone-o" />
+                                    <van-icon name="phone" />
                                     {{item.phone}}
                                 </p>
                             </div>

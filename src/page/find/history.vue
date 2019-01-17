@@ -1,6 +1,6 @@
 <template>
   	<div>
-        <Header title="找家政企业"></Header>
+        <Header title="订单记录"></Header>
         <div class="wap_scroll">
             <ul class="per_list">
                 <li v-for="item in list" :key="item.id" class="per_li">
@@ -10,33 +10,18 @@
                             <div class="per_left">
                                 <h3>
                                     {{item.nickname}} 
-                                    <van-tag 
-                                        :color="AUTHSTSTUS[item.status].color" 
-                                        plain
-                                        class="status_tag"
-                                    >
-                                    {{AUTHSTSTUS[item.status].name}}</van-tag>
+                                    <span class="phone">
+                                        {{item.phone}}
+                                    </span>
                                 </h3>
-                                <p class="phone">
-                                    <span>{{item.person}}</span>
-                                    <van-icon name="phone" />
-                                    {{item.phone}}
+                                <p class="time">
+                                    订单时间：{{item.time}}
                                 </p>
-                                <p class="level">星级评价：
-                                    <van-rate 
-                                        v-model="item.level"
-                                        :size="10"
-                                        color="#00BEAF"
-                                        void-color="#00BEAF"
-                                    />
-                                </p>
+                                <van-button v-if="item.hasCancel" plain type="primary">取消</van-button>
                             </div>
                             <div class="per_right">
-                                <van-button type="primary">订单</van-button>
+                                <img class="per_st" :src="item.statusUrl" />
                             </div>
-                        </div>
-                        <div class="per_desc">
-                            {{item.desc}}
                         </div>
                     </div>
                 </li>
@@ -66,22 +51,42 @@ export default {
                 {
                     id: 0,
                     status: 0,
-                    nickname: '某某家政服务有限公司',
-                    level: 4,
-                    person: '张经理',
+                    nickname: '李嫂',
+                    time: '2019-01-02  09:09:00',
                     phone: '18030728562',
-                    imgUrl: require('../../assets/banner.png'),
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
+                    statusUrl: require('../../assets/status0.png'),
+                    hasCancel: true,
+                    imgUrl: require('../../assets/banner.png')
                 },
                 {
                     id: 1,
                     status: 1,
-                    nickname: '某某家政服务有限公司',
-                    level: 2,
-                    person: '张经理',
+                    nickname: '李嫂',
+                    time: '2019-01-02  09:09:00',
                     phone: '18030728562',
-                    imgUrl: require('../../assets/banner.png'),
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
+                    statusUrl: require('../../assets/status1.png'),
+                    hasCancel: false,
+                    imgUrl: require('../../assets/banner.png')
+                },
+                {
+                    id: 2,
+                    status: 2,
+                    nickname: '李嫂',
+                    time: '2019-01-02  09:09:00',
+                    phone: '18030728562',
+                    statusUrl: require('../../assets/status2.png'),
+                    hasCancel: false,
+                    imgUrl: require('../../assets/banner.png')
+                },
+                {
+                    id: 3,
+                    status: 3,
+                    nickname: '李嫂',
+                    time: '2019-01-02  09:09:00',
+                    phone: '18030728562',
+                    statusUrl: require('../../assets/status3.png'),
+                    hasCancel: false,
+                    imgUrl: require('../../assets/banner.png')
                 }
             ]
         }
@@ -127,24 +132,25 @@ export default {
         display: flex;
         justify-content: space-between;
         .per_left {
+            .van-button {
+                width: 82px;
+                height: 32px;
+                line-height: 32px;
+                border: 1px solid #00BEAF;
+                border-radius: 4px;
+            }
             h3 {
                 font-size: 14px;
                 color: #1E2227;
                 line-height: 24px;
             }
-            .level {
+            .time {
                 display: flex;
-                font-size: 11px;
+                font-size: 13px;
                 color: #555;
                 line-height: 26px;
             }
             .phone {
-                span {
-                    margin-right: 10px;
-                    font-size: 14px;
-                    color: #1E2227;
-                    line-height: 28px;
-                }
                 font-size: 12px;
                 color: #00BEAF;
                 line-height: 20px;
@@ -157,6 +163,10 @@ export default {
                 line-height: 32px;
                 background: #00BEAF;
                 border-radius: 4px;
+            }
+            .per_st {
+                width: 67px;
+                height: 67px;
             }
         }
     }

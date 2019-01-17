@@ -35,7 +35,7 @@ export default {
                     imgUrl: require('../assets/banner.png'),
                     tit: '订单记录',
                     desc: '历史订单列表',
-                    url: './contract',
+                    url: './history',
                 }
             ]
         }
