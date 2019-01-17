@@ -12,12 +12,14 @@
                             <div class="per_left">
                                 <h3>
                                     {{item.nickname}} 
-                                    <van-tag 
-                                        :color="AUTHSTSTUS[item.status].color" 
-                                        plain
-                                        class="status_tag"
-                                    >
-                                    {{AUTHSTSTUS[item.status].name}}</van-tag>
+                                    <router-link to="./auth">
+                                        <van-tag 
+                                            :color="AUTHSTSTUS[item.status].color" 
+                                            plain
+                                            class="status_tag"
+                                        >
+                                        {{AUTHSTSTUS[item.status].name}}</van-tag>
+                                    </router-link>
                                 </h3>
                                 <p class="level">星级评价：
                                     <van-rate 

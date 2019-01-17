@@ -14,6 +14,7 @@ const person = r => require.ensure([], () => r(require('../page/find/person')), 
 const findcompany = r => require.ensure([], () => r(require('../page/find/findcompany')), 'findcompany')
 const history = r => require.ensure([], () => r(require('../page/find/history')), 'history')
 const personal = r => require.ensure([], () => r(require('../page/me/personal')), 'personal')
+const auth = r => require.ensure([], () => r(require('../page/me/auth')), 'auth')
 
 export default
 [
@@ -80,5 +81,9 @@ export default
   {
     path: '/personal',
     component: personal
+  },
+  {
+    path: '/auth',
+    component: auth
   }
 ]
