@@ -13,6 +13,7 @@ const find = r => require.ensure([], () => r(require('../page/find/index')), 'fi
 const person = r => require.ensure([], () => r(require('../page/find/person')), 'person')
 const findcompany = r => require.ensure([], () => r(require('../page/find/findcompany')), 'findcompany')
 const history = r => require.ensure([], () => r(require('../page/find/history')), 'history')
+const personal = r => require.ensure([], () => r(require('../page/me/personal')), 'personal')
 
 export default
 [
@@ -75,5 +76,9 @@ export default
   {
     path: '/history',
     component: history
+  },
+  {
+    path: '/personal',
+    component: personal
   }
 ]

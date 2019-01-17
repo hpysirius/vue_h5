@@ -8,10 +8,10 @@
         </li>
         <li class="f_line"></li>
         <li class="f_li">
-            <a class="f_nav f_main">
+            <router-link to="./personal" class="f_nav f_main">
                 <i class="f_icon f_me_icon"></i>
                 <span>个人中心</span>
-            </a>
+            </router-link>
         </li>
     </ul>
 </template>
