@@ -19,7 +19,7 @@ export default {
                 {
                     imgUrl: require('../assets/nav0.png'),
                     text: '找家政',
-                    url: '',
+                    url: './find',
                 },
                 {
                     imgUrl: require('../assets/nav1.png'),
