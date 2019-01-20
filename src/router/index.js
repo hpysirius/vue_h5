@@ -18,6 +18,7 @@ const auth = r => require.ensure([], () => r(require('../page/me/auth')), 'auth'
 const login = r => require.ensure([], () => r(require('../page/login')), 'login')
 const register = r => require.ensure([], () => r(require('../page/login/register')), 'register')
 const findPassword = r => require.ensure([], () => r(require('../page/login/findPassword')), 'findPassword')
+const credInfo = r => require.ensure([], () => r(require('../page/credentials/credInfo')), 'credInfo')
 
 export default
 [
@@ -100,5 +101,9 @@ export default
   {
     path: '/findPassword',
     component: findPassword
+  },
+  {
+    path: '/credInfo',
+    component: credInfo
   }
 ]
