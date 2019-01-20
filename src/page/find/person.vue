@@ -9,7 +9,7 @@
                         <div class="per_wrap">
                             <div class="per_left">
                                 <h3>
-                                    {{item.nickname}} 
+                                    {{item.name}} 
                                     <van-tag 
                                         :color="AUTHSTSTUS[item.status].color" 
                                         plain
@@ -48,7 +48,10 @@
 import Vue from 'vue';
 import { Button, Tag, Rate, Icon } from 'vant';
 import { mapState, mapMutations } from 'vuex'
-import { AUTHSTSTUS } from '../../utils/constants';
+import {
+    Getpractitioner
+} from "@/service/getData";
+import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -65,19 +68,21 @@ export default {
                 {
                     id: 0,
                     status: 0,
-                    nickname: '昵称名字',
+                    name: '昵称名字',
                     level: 4,
                     phone: '18030728562',
                     imgUrl: require('../../assets/banner.png'),
+                    skills: "001",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 },
                 {
                     id: 1,
                     status: 1,
-                    nickname: '昵称名字',
+                    name: '昵称名字',
                     level: 4,
                     phone: '18030728562',
                     imgUrl: require('../../assets/banner.png'),
+                    skills: "001",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 }
             ]
@@ -87,6 +92,24 @@ export default {
          ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData() {
+            // const personList =  Getpractitioner();
+            const personList = this.list;
+            
+            personList.map((val, index) => {
+                let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
+                console.log(skillStr);
+                val.desc = skillStr;
+                return val;
+            });
+            
+            this.list = personList;
+        }
     },
     components: {
         Footer,
