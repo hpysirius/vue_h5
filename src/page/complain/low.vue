@@ -2,7 +2,7 @@
   	<div>
         <Header title="法律咨询"></Header>
         <div class="wap_scroll">
-            <div class="btn">
+            <div class="low_btn">
                 <van-button size="large" type="default">新建咨询</van-button>
             </div>
             <ul class="low_container">
@@ -75,7 +75,7 @@ export default {
 .ss_con {
     padding: 0 8px;
 }
-.btn {
+.low_btn {
     margin: 16px;
     .van-button--large {
         background: #00BEAF;
