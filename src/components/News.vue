@@ -6,14 +6,14 @@
         </div>
         <ul class="news_list">
             <li 
-                v-for="(item, index) in list" :key="item.id" 
+                v-for="(item, index) in newsList" :key="item.id" 
                 :class="index < list.length - 1 ? 'news_li' : ''"
             >
                 <a href="#">
-                    <h3 class="news_tit">{{item.tit}}</h3>
-                    <p class="news_desc">{{item.desc}}</p>
-                    <img v-show="item.img" class="news_img" :src="item.img" />
-                    <p class="news_time">{{item.date}}</p>
+                    <h3 class="news_tit">{{item.news_title}}</h3>
+                    <p class="news_desc">{{item.news_url}}</p>
+                    <img v-show="item.img" class="news_img" :src="item.cover_picture" />
+                    <p class="news_time">{{item.creat_time}}</p>
                 </a>
             </li>
         </ul>
@@ -45,7 +45,7 @@ export default {
     mounted(){
     
     },
-    props: ['alertText'],
+    props: ['alertText', 'newsList'],
     computed: {
         ...mapState([
             'count'

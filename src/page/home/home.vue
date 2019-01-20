@@ -9,7 +9,7 @@
                 </div>
             </div>
             <Nav></Nav>
-            <News></News>
+            <News :newsList="newsList"></News>
         </div>
         <Footer></Footer>
     </div>
@@ -17,9 +17,10 @@
 
 <script>
 import Vue from 'vue';
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 import {
- GetAdver
+ GetAdver,
+ GetNews
 } from "@/service/getData";
 import Header from '../../components/Header'
 import { Search } from 'vant';
@@ -34,7 +35,26 @@ export default {
     data(){
         return{
             swiperList: [
+                {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"},
                 {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"}
+            ],
+            newsList: [
+                {
+                    id: 0,
+                    img: true,
+                    news_title: '技能培训合格家政人员名单公示',
+                    news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
+                    cover_picture: 'https://img.yzcdn.cn/public_files/2017/12/18/fd78cf6bb5d12e2a119d0576bedfd230.png',
+                    creat_time: '2019-01-04 23:23:09'
+                },
+                {
+                    id: 1,
+                    img: false,
+                    news_title: '技能培训合格家政人员名单公示',
+                    news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
+                    cover_picture: 'https://img.yzcdn.cn/public_files/2017/12/18/fd78cf6bb5d12e2a119d0576bedfd230.png',
+                    creat_time: '2019-01-04 23:23:09'
+                }
             ]
         }
     },
@@ -48,9 +68,11 @@ export default {
     },
     methods: {
         async getData(){
-            // let swiperList = await GetAdver({ type: 1 });
+            // const swiperList = await GetAdver({ type: 1 });
             // this.swiperList = (swiperList && swiperList.list) || [];
             // console.log(this.swiperList);
+            const newsList = await GetNews({ type: 1 });
+            console.log(newsList);
         }
     },
     components: {
