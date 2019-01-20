@@ -49,7 +49,7 @@ import Vue from 'vue';
 import { Button, Tag, Rate, Icon } from 'vant';
 import { mapState, mapMutations } from 'vuex'
 import {
-    Getpractitioner
+    Getpractitioner, Getskills
 } from "@/service/getData";
 import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
 import Header from '../../components/Header'
@@ -99,6 +99,7 @@ export default {
     methods: {
         async getData() {
             // const personList =  Getpractitioner();
+            const skills = Getskills();
             const personList = this.list;
             
             personList.map((val, index) => {
