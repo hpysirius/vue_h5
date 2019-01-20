@@ -9,7 +9,7 @@
                         <div class="per_wrap">
                             <div class="per_left">
                                 <h3>
-                                    {{item.nickname}} 
+                                    {{item.name}} 
                                     <van-tag 
                                         :color="AUTHSTSTUS[item.status].color" 
                                         plain
@@ -18,9 +18,9 @@
                                     {{AUTHSTSTUS[item.status].name}}</van-tag>
                                 </h3>
                                 <p class="phone">
-                                    <span>{{item.person}}</span>
+                                    <span>{{item.contacts}}</span>
                                     <van-icon name="phone" />
-                                    {{item.phone}}
+                                    {{item.telphone}}
                                 </p>
                                 <p class="level">星级评价：
                                     <van-rate 
@@ -47,9 +47,12 @@
 </template>
 <script>
 import Vue from 'vue';
+import {
+    Getcompany
+} from "@/service/getData";
 import { Button, Tag, Rate, Icon } from 'vant';
 import { mapState, mapMutations } from 'vuex'
-import { AUTHSTSTUS } from '../../utils/constants';
+import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -62,25 +65,28 @@ export default {
     data(){
         return{
             AUTHSTSTUS,
+            SKILL_TYPE,
             list: [
                 {
                     id: 0,
                     status: 0,
-                    nickname: '某某家政服务有限公司',
+                    name: '某某家政服务有限公司',
                     level: 4,
-                    person: '张经理',
-                    phone: '18030728562',
+                    contacts: '张经理',
+                    telphone: '18030728562',
                     imgUrl: require('../../assets/banner.png'),
+                    skills: "001|002",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 },
                 {
                     id: 1,
                     status: 1,
-                    nickname: '某某家政服务有限公司',
-                    level: 2,
-                    person: '张经理',
-                    phone: '18030728562',
+                    name: '某某家政服务有限公司',
+                    level: 4,
+                    contacts: '张经理',
+                    telphone: '18030728562',
                     imgUrl: require('../../assets/banner.png'),
+                    skills: "002|000",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 }
             ]
@@ -90,6 +96,22 @@ export default {
          ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData() {
+            // const comanyList = await Getcompany();
+            let companyList = this.list;
+            companyList.map((val, index) => {
+                let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
+                console.log(skillStr);
+                val.desc = skillStr;
+                return val;
+            });
+            this.list = companyList;
+        }
     },
     components: {
         Footer,
