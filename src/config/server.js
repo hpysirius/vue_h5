@@ -3,7 +3,7 @@ const server = {
     admin: '//localhost:7002'
   },
   dev: {
-    admin: '//localhost:7002'
+    admin: 'http://120.78.179.190:8000'
   },
   pro: {
     admin: 'xxxx'

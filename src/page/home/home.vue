@@ -5,7 +5,7 @@
             <div class="ss_con">
                 <!-- <van-search placeholder="请输入搜索关键词" v-model="value" /> -->
                 <div class="scorll_wrap">
-                    <Swiper></Swiper>
+                    <Swiper :swiperList="swiperList"></Swiper>
                 </div>
             </div>
             <Nav></Nav>
@@ -19,7 +19,7 @@
 import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex'
 import {
- getCategory
+ GetAdver
 } from "@/service/getData";
 import Header from '../../components/Header'
 import { Search } from 'vant';
@@ -33,7 +33,9 @@ Vue.use(Search);
 export default {
     data(){
         return{
-            res: {}
+            swiperList: [
+                {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"}
+            ]
         }
     },
     computed: {
@@ -46,9 +48,9 @@ export default {
     },
     methods: {
         async getData(){
-            let res = await getCategory({ name: 'huanghui' });
-            this.res = res;
-            console.log(res);
+            // let swiperList = await GetAdver({ type: 1 });
+            // this.swiperList = (swiperList && swiperList.list) || [];
+            // console.log(this.swiperList);
         }
     },
     components: {

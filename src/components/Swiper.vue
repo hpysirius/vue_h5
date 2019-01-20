@@ -1,8 +1,8 @@
  <template>
     <div class="swiper-box">
         <van-swipe :autoplay="3000">
-            <van-swipe-item v-for="(image, index) in banners" :key="index">
-                <img :src="image" />
+            <van-swipe-item v-for="(item, index) in swiperList" :key="index">
+                <img :src="item.url" />
             </van-swipe-item>
         </van-swipe>
     </div>
@@ -19,10 +19,11 @@ export default {
     data(){
         return{
             a: 1,
+            // data
             banners: [
                 require('../assets/banner.png'),
                 require('../assets/banner.png'),
-                require('../assets/banner.png'),
+                require('../assets/banner.png')
             ],
             notNextTick: true,
             swiperOption: {
@@ -43,15 +44,16 @@ export default {
         }
     },
     mounted(){
-    
     },
-    props: ['alertText'],
+    props: ['alertText', 'swiperList'],
     computed: {
         ...mapState([
-            'count'
+            'count',
         ]),
     },
     components: {
+    },
+    created() {
     },
     methods: {
         closeTip(){

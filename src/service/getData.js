@@ -1,8 +1,6 @@
 import fetch from '../config/fetch'
 
-/**
- * 获取首页默认地址
- */
-export const getCategory = params => fetch('/web/article/getCategory', params, 'post')
-
-export const getUser = () => {}
+// 1.获取滚动图列表
+export const GetAdver = params => fetch('/GetAdver', params, 'get')
+// 1.获取滚动图列表
+export const GetNews = params => fetch('/GetNews', params, 'get')

@@ -4,7 +4,6 @@ import { getServer } from '../utils/share'
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase()
   url = getServer().admin + url
-
   if (type === 'GET') {
     let dataStr = '' // 数据拼接字符串
     Object.keys(data).forEach(key => {
@@ -19,7 +18,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 
   if (window.fetch && method === 'fetch') {
     let requestConfig = {
-      credentials: 'include',
+      // credentials: 'include',
       method: type,
       headers: {
         'Accept': 'application/json',
