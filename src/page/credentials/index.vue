@@ -14,7 +14,7 @@
                     <van-cell-group class="input_con">
                         <div class="input_wrap">
                             <van-field
-                                v-model="username"
+                                v-model="paramId.name"
                                 label="身份证号"
                                 placeholder="请输入身份证号"
                                 :error="false"
@@ -22,7 +22,7 @@
                         </div>
                         <div class="input_wrap">
                             <van-field
-                                v-model="phone"
+                                v-model="paramId.card"
                                 label="姓名"
                                 placeholder="请输入姓名"
                                 :error="false"
@@ -34,7 +34,7 @@
                     <van-cell-group class="input_con">
                         <div class="input_wrap">
                             <van-field
-                                v-model="username"
+                                v-model="paramNo.name"
                                 label="证书编号"
                                 placeholder="请输入证书编号"
                                 :error="false"
@@ -42,7 +42,7 @@
                         </div>
                         <div class="input_wrap">
                             <van-field
-                                v-model="phone"
+                                v-model="paramNo.certificate_no"
                                 label="姓名"
                                 placeholder="请输入姓名"
                                 :error="false"
@@ -51,7 +51,7 @@
                     </van-cell-group>
                 </van-tab>
                 <div class="btn_wrap">
-                    <van-button size="large">查询</van-button>
+                    <van-button @click="submit" size="large">查询</van-button>
                 </div>
             </van-tabs>
             <p class="cred_desc">
@@ -70,6 +70,10 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Skill from '../../components/Skill'
 import { Tab, Tabs, Swipe, SwipeItem, Field, Button } from 'vant'
+import {
+ GetcertificateByid,
+ GetcertificateByno
+} from "@/service/getData";
 
 Vue.use(Button);
 Vue.use(Field);
@@ -80,19 +84,48 @@ Vue.use(Radio);
 export default {
     data(){
         return{
+            paramId: {
+                name: '',
+                card: '',
+            },
+            paramNo: {
+                name: '',
+                certificate_no: ''
+            },
+            resultId: {
+                id: 1,
+                certificate: '从业资格证',
+                certificate_no: '513455555555555585858',
+                name: '张小二',
+                id_card: '510129********6756',
+                issuing_authority: 'XXXX家政协会',
+                issuing_date: '2018-11-02'
+            },
             images: [
                 require('../../assets/banner.png'),
                 require('../../assets/banner.png'),
                 require('../../assets/banner.png')
             ],
             a: 1,
-            active: 2
+            active: 0
         }
     },
     computed: {
          ...mapState([
             'userInfo'
         ]),
+    },
+    methods: {
+        async submit(){
+            // if(this.active === 0){
+            //     const data = await GetcertificateByid(this.paramId);
+            // }else{
+            //     const data = await GetcertificateByno(this.paramNo);
+            // }
+            console.log(this.resultId)
+            // this.$store.dispatch('SET_RESULT', resultId);
+            this.$router.push({ path: '/credInfo', params: this.resultId });
+        }
     },
     components: {
         Footer,
