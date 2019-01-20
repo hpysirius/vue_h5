@@ -15,6 +15,9 @@ const findcompany = r => require.ensure([], () => r(require('../page/find/findco
 const history = r => require.ensure([], () => r(require('../page/find/history')), 'history')
 const personal = r => require.ensure([], () => r(require('../page/me/personal')), 'personal')
 const auth = r => require.ensure([], () => r(require('../page/me/auth')), 'auth')
+const login = r => require.ensure([], () => r(require('../page/login')), 'login')
+const register = r => require.ensure([], () => r(require('../page/login/register')), 'register')
+const findPassword = r => require.ensure([], () => r(require('../page/login/findPassword')), 'findPassword')
 
 export default
 [
@@ -85,5 +88,17 @@ export default
   {
     path: '/auth',
     component: auth
+  },
+  {
+    path: '/login',
+    component: login
+  },
+  {
+    path: '/register',
+    component: register
+  },
+  {
+    path: '/findPassword',
+    component: findPassword
   }
 ]
