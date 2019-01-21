@@ -122,9 +122,9 @@ export default {
             // }else{
             //     const data = await GetcertificateByno(this.paramNo);
             // }
-            console.log(this.resultId)
+            // console.log(data, this.resultId)
             // this.$store.dispatch('SET_RESULT', resultId);
-            this.$router.push({ path: '/credInfo', params: this.resultId });
+            this.$router.push({ path: '/credInfo', query: this.resultId });
         }
     },
     components: {

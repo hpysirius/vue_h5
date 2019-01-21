@@ -44,7 +44,7 @@ export default {
                     img: true,
                     news_title: '技能培训合格家政人员名单公示',
                     news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
-                    cover_picture: 'https://img.yzcdn.cn/public_files/2017/12/18/fd78cf6bb5d12e2a119d0576bedfd230.png',
+                    cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
                     creat_time: '2019-01-04 23:23:09'
                 },
                 {
@@ -52,7 +52,7 @@ export default {
                     img: false,
                     news_title: '技能培训合格家政人员名单公示',
                     news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
-                    cover_picture: 'https://img.yzcdn.cn/public_files/2017/12/18/fd78cf6bb5d12e2a119d0576bedfd230.png',
+                    cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
                     creat_time: '2019-01-04 23:23:09'
                 }
             ]

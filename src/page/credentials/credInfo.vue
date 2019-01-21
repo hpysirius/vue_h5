@@ -23,21 +23,12 @@ import Footer from '../../components/Footer'
 export default {
     data(){
         return{
-            a: 1,
-            result: {
-                id: 1,
-                certificate: '从业资格证',
-                certificate_no: '513455555555555585858',
-                name: '张小二',
-                id_card: '510129********6756',
-                issuing_authority: 'XXXX家政协会',
-                issuing_date: '2018-11-02' 
-            }
+            a: 1
         }
     },
     computed: {
          ...mapState([
-            'result', 'userInfo'
+            'userInfo'
         ]),
     },
     created(){
@@ -45,11 +36,8 @@ export default {
     },
     methods: {
       getParams () {
-        // 取到路由带过来的参数 
-        const params = this.$route.params
-        console.log(this.$route);
-        // // 将数据放在当前组件的数据内
-        // this.params = params
+        const query = this.$route.query
+        this.result = query
       }
     },
     watch: {
