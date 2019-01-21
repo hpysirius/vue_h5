@@ -2,13 +2,13 @@
   	<div>
         <Header title="证书查询结果"></Header>
         <div class="wap_scroll">
-            <div class="credInfoWrap">
-                <p class="credInfo"><span>证书：</span>{{result.certificate}}</p>
-                <p class="credInfo"><span>证书编号：</span>{{result.certificate_no}}</p>
-                <p class="credInfo"><span>姓名：</span>{{result.name}}</p>
-                <p class="credInfo"><span>身份证号：</span>{{result.id_card}}</p>
-                <p class="credInfo"><span>颁发机构：</span>{{result.issuing_authority}}</p>
-                <p class="credInfo"><span>颁发时间：</span>{{result.issuing_date}}</p>
+            <div class="credInfoWrap" v-for="item in result" :key="item.id">
+                <p class="credInfo"><span>证书：</span>{{item.certificate}}</p>
+                <p class="credInfo"><span>证书编号：</span>{{item.certificate_no}}</p>
+                <p class="credInfo"><span>姓名：</span>{{item.name}}</p>
+                <p class="credInfo"><span>身份证号：</span>{{item.id_card}}</p>
+                <p class="credInfo"><span>颁发机构：</span>{{item.issuing_authority}}</p>
+                <p class="credInfo"><span>颁发时间：</span>{{item.issuing_date}}</p>
             </div>
         </div>
         <Footer></Footer>

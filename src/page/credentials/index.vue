@@ -15,7 +15,7 @@
                     <van-cell-group class="input_con">
                         <div class="input_wrap">
                             <van-field
-                                v-model="paramId.name"
+                                v-model="paramId.id_card"
                                 label="身份证号"
                                 placeholder="请输入身份证号"
                                 :error="false"
@@ -23,7 +23,7 @@
                         </div>
                         <div class="input_wrap">
                             <van-field
-                                v-model="paramId.card"
+                                v-model="paramId.name"
                                 label="姓名"
                                 placeholder="请输入姓名"
                                 :error="false"
@@ -65,7 +65,7 @@
 
 <script>
 import Vue from 'vue';
-import { RadioGroup, Radio } from 'vant';
+import { RadioGroup, Radio, Toast } from 'vant';
 import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -84,12 +84,13 @@ Vue.use(Tab).use(Tabs);
 Vue.use(Swipe).use(SwipeItem);
 Vue.use(RadioGroup);
 Vue.use(Radio);
+Vue.use(Toast);
 export default {
     data(){
         return{
             paramId: {
                 name: '',
-                card: '',
+                id_card: '',
             },
             paramNo: {
                 name: '',
@@ -125,18 +126,20 @@ export default {
         async getData(){
             const swiperList = await GetAdver({ type: 1 });
             this.swiperList = (swiperList && swiperList.list) || [];
-            // const newsList = await GetNews();
-            // this.newsList = (newsList && newsList.list) || [];
         },
-        submit(){
-            // if(this.active === 0){
-            //     const data = await GetcertificateByid(this.paramId);
-            // }else{
-            //     const data = await GetcertificateByno(this.paramNo);
-            // }
-            // console.log(data, this.resultId)
-            // this.$store.dispatch('SET_RESULT', resultId);
-            this.$router.push({ path: '/credInfo', query: this.resultId });
+        async submit(){
+            if(this.active === 0){
+                const data = await GetcertificateByid(this.paramId);
+                this.resultId = (data && data.list) || [];
+            }else{
+                const data = await GetcertificateByno(this.paramNo);
+                this.resultId = (data && data.list) || [];
+            }
+            if(this.resultId.length){
+                this.$router.push({ path: '/credInfo', query: this.resultId });
+            }else{
+                Toast('查询无数据');
+            }
         }
     },
     components: {

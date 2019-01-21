@@ -42,7 +42,7 @@ export default {
 <style lang="scss">
 @import '../style/mixin/border-retina.scss';
 .header_container {
-    position: fixed;
+    position: fixed!important;
     top: 0;
     left: 0;
     width: 100%;

@@ -70,10 +70,8 @@ export default {
         async getData(){
             const swiperList = await GetAdver({ type: 1 });
             this.swiperList = (swiperList && swiperList.list) || [];
-            console.log(this.swiperList);
             const newsList = await GetNews();
             this.newsList = (newsList && newsList.list) || [];
-            console.log(newsList);
         }
     },
     components: {
