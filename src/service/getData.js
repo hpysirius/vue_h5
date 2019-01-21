@@ -13,4 +13,4 @@ export const GetcertificateByid = params => fetch('/GetcertificateByid', params,
 // 6.证书查询（证书编号+姓名）
 export const GetcertificateByno = params => fetch('/GetcertificateByno', params, 'get')
 // 7.服务项目列表
-export const Getskills = params => fetch("/Getskills", params, "get");
+export const Getskills = params => fetch('/Getskills', params, 'get')

@@ -6,16 +6,19 @@
                 <van-row>
                     <van-col span="18">
                         <van-cell-group>
-                            <van-field v-model="value" placeholder="请输入姓名或身份证号查询" />
+                            <van-field 
+                                v-model="name_idcard"
+                                placeholder="请输入姓名或身份证号查询"
+                            />
                         </van-cell-group>
                     </van-col>
                     <van-col span="6">
-                        <van-button type="default">查询</van-button>
+                        <van-button type="default" @click="getData">查询</van-button>
                     </van-col>
                 </van-row>
             </div>
             <ul class="st_list">
-                <li class="st_li" v-for="item in list" :key="item.id">
+                <li class="st_li" v-if="list.length > 0" v-for="item in list" :key="item.id">
                     <p>
                         <span>姓   名：</span>{{item.name}}
                         <van-tag 
@@ -25,8 +28,10 @@
                         >
                         {{AUTHSTSTUS[item.status].name}}</van-tag>
                     </p>
-                    <p><span>身份证号：</span>{{item.IDcard}}</p>
+                    <p><span>身份证号：</span>{{item.id_card}}</p>
+                    <p>{{item.desc}}</p>
                 </li>
+                <!-- <li class="st_li" v-if="list.length === 0">暂无数据</li> -->
             </ul>
         </div>
         <Footer></Footer>
@@ -38,30 +43,23 @@ import {mapState, mapMutations} from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import InquiryName from '../../components/InquiryName'
-import { Field, Row, Col, Button, Tag } from 'vant';
-import { AUTHSTSTUS } from '../../utils/constants';
+import { Field, Row, Col, Button, Tag, Toast } from 'vant';
+import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
+import {
+    Getpractitioner, Getskills
+} from "@/service/getData";
 
 Vue.use(Tag);
 Vue.use(Field);
 Vue.use(Button);
 Vue.use(Row).use(Col);
+Vue.use(Toast);
 export default {
     data(){
         return{
+            name_idcard: '',
             AUTHSTSTUS,
             list: [
-                {
-                    id: 1,
-                    name: '张小二',
-                    IDcard: '510129********6756',
-                    status: '1'
-                },
-                {
-                    id: 2,
-                    name: '张小二',
-                    IDcard: '510129********6756',
-                    status: '0'
-                }
             ]
         }
     },
@@ -69,6 +67,30 @@ export default {
          ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+    },
+    methods: {
+        async getData() {
+            if(this.name_idcard === ''){
+                Toast('查询内容不能为空');
+                return;
+            }
+            const personList =  await Getpractitioner({ name_idcard: this.name_idcard });
+            const skills = await Getskills();
+            const list = (personList && personList.list) || [];
+            if(list.length){
+                list.map((val, index) => {
+                    const skillStr = (val.skills && val.skills.split("|").map(skill => SKILL_TYPE[skill]).join(",")) || '';
+                    val.desc = skillStr;
+                    return val;
+                });
+                this.list = list;
+            }else{
+                this.list = [];
+                Toast('暂无数据');
+            }
+        }
     },
     components: {
         Footer,

@@ -6,21 +6,21 @@
                 <van-row>
                     <van-col span="18">
                         <van-cell-group>
-                            <van-field v-model="value" placeholder="请输入企业名称查询" />
+                            <van-field v-model="name" placeholder="请输入企业名称查询" />
                         </van-cell-group>
                     </van-col>
                     <van-col span="6">
-                        <van-button type="default">查询</van-button>
+                        <van-button type="default" @click="getData">查询</van-button>
                     </van-col>
                 </van-row>
             </div>
             <ul class="st_list">
                 <li class="st_li" v-for="item in list" :key="item.id">
                     <p>
-                        <span>企业名称：</span>{{item.companyname}}
+                        <span>企业名称：</span>{{item.name}}
                     </p>
                     <p>
-                        <span>信用代码：</span>{{item.code}}
+                        <span>信用代码：</span>{{item.company_code}}
                         <van-tag 
                             :color="AUTHSTSTUS[item.status].color" 
                             plain
@@ -28,7 +28,7 @@
                         >
                         {{AUTHSTSTUS[item.status].name}}</van-tag>
                     </p>
-                    <p><span>企业法人：</span>{{item.corporation}}</p>
+                    <p><span>企业法人：</span>{{item.contacts}}</p>
                 </li>
             </ul>
         </div>
@@ -37,36 +37,41 @@
 </template>
 <script>
 import Vue from 'vue';
-import {mapState, mapMutations} from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import InquiryName from '../../components/InquiryName'
-import { Field, Row, Col, Button, Tag } from 'vant';
-import { AUTHSTSTUS } from '../../utils/constants';
+import { Field, Row, Col, Button, Tag, Toast } from 'vant';
+import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
+import {
+    Getcompany, Getskills
+} from "@/service/getData";
 
 Vue.use(Tag);
 Vue.use(Field);
 Vue.use(Button);
 Vue.use(Row).use(Col);
+Vue.use(Toast);
 export default {
     data(){
         return{
+            name: '',
             AUTHSTSTUS,
             list: [
-                {
-                    id: 1,
-                    companyname: '成都市ZZZ家政服务有限公司',
-                    code: '510129********6756',
-                    corporation: '张小二',
-                    status: '1'
-                },
-                {
-                    id: 2,
-                    companyname: '成都市ZZZ家政服务有限公司',
-                    code: '510129********6756',
-                    corporation: '张小二',
-                    status: '0'
-                },
+                // {
+                //     id: 1,
+                //     companyname: '成都市ZZZ家政服务有限公司',
+                //     code: '510129********6756',
+                //     corporation: '张小二',
+                //     status: '1'
+                // },
+                // {
+                //     id: 2,
+                //     companyname: '成都市ZZZ家政服务有限公司',
+                //     code: '510129********6756',
+                //     corporation: '张小二',
+                //     status: '0'
+                // },
             ]
         }
     },
@@ -74,6 +79,28 @@ export default {
          ...mapState([
             'userInfo'
         ]),
+    },
+    methods: {
+        async getData() {
+            if(this.name === ''){
+                Toast('查询内容不能为空');
+                return;
+            }
+            const personList =  await Getcompany({ name: this.name });
+            const skills = await Getskills();
+            const list = (personList && personList.list) || [];
+            if(list.length){
+                list.map((val, index) => {
+                    const skillStr = (val.skills && val.skills.split("|").map(skill => SKILL_TYPE[skill]).join(",")) || '';
+                    val.desc = skillStr;
+                    return val;
+                });
+                this.list = list;
+            }else{
+                this.list = [];
+                Toast('暂无数据');
+            }
+        }
     },
     components: {
         Footer,
