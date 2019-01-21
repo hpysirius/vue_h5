@@ -35,7 +35,7 @@
                     <van-cell-group class="input_con">
                         <div class="input_wrap">
                             <van-field
-                                v-model="paramNo.name"
+                                v-model="paramNo.certificate_no"
                                 label="证书编号"
                                 placeholder="请输入证书编号"
                                 :error="false"
@@ -43,7 +43,7 @@
                         </div>
                         <div class="input_wrap">
                             <van-field
-                                v-model="paramNo.certificate_no"
+                                v-model="paramNo.name"
                                 label="姓名"
                                 placeholder="请输入姓名"
                                 :error="false"

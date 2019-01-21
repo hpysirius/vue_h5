@@ -57,22 +57,7 @@ export default {
         return{
             name: '',
             AUTHSTSTUS,
-            list: [
-                // {
-                //     id: 1,
-                //     companyname: '成都市ZZZ家政服务有限公司',
-                //     code: '510129********6756',
-                //     corporation: '张小二',
-                //     status: '1'
-                // },
-                // {
-                //     id: 2,
-                //     companyname: '成都市ZZZ家政服务有限公司',
-                //     code: '510129********6756',
-                //     corporation: '张小二',
-                //     status: '0'
-                // },
-            ]
+            list: []
         }
     },
     computed: {

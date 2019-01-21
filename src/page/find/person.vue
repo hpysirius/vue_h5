@@ -5,7 +5,7 @@
             <van-loading type="spinner" v-if="loading" />
             <ul class="per_list">
                 <li v-for="item in list" :key="item.id" class="per_li">
-                    <img :src="item.imgUrl" class="per_img" />
+                    <img :src="item.imgUrl || defaultUrl" class="per_img" />
                     <div class="per_info">
                         <div class="per_wrap">
                             <div class="per_left">
@@ -73,7 +73,7 @@ export default {
     },
     computed: {
          ...mapState([
-            'userInfo'
+            'defaultUrl'
         ]),
     },
     created() {

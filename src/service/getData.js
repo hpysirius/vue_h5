@@ -18,3 +18,5 @@ export const Getskills = params => fetch('/Getskills', params, 'get')
 export const Pullpractitioner = params => fetch('/Pullpractitioner', params, 'get')
 // 18. 找家政企业/获取家政企业列表
 export const Pullcompany = params => fetch('/Pullcompany', params, 'get')
+// 18. 视频列表
+export const Getlearnvideo = params => fetch('/Getlearnvideo', params, 'get')

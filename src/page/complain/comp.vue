@@ -8,14 +8,14 @@
                    <van-cell title="单元格">
                         <template slot="title"> 
                             <span class="comvan-title">投诉对象：</span>
-                            <van-radio-group v-model="radio">
-                                <van-radio name="1">家政企业</van-radio>
-                                <van-radio name="2">服务人员</van-radio>
-                                <van-radio name="3">雇主</van-radio>
+                            <van-radio-group v-model="form.complain_type">
+                                <van-radio name="0">家政企业</van-radio>
+                                <van-radio name="1">服务人员</van-radio>
+                                <van-radio name="2">雇主</van-radio>
                             </van-radio-group>
                         </template>
                    </van-cell>
-                   <van-cell title="企业名称" is-link value="请选择投诉企业" />
+                   <van-cell title="企业名称" v-model="form.complain_company_name" is-link value="请选择投诉企业" />
                    <van-cell title="信用代码" value="填写企业后自动填充" />
                    <van-cell title="服务类型" is-link value="请选择服务类型" />
                    <van-cell-group>
@@ -78,6 +78,31 @@ Vue.use(Field);
 export default {
     data(){
         return{
+            form: {
+                // 投诉企业填写信息
+                complain_type: '0',
+                complain_company_name: '',
+                complain_company_code: '',
+                complain_skills: '',
+                complain_complain_info: '',
+                // 投投诉从业人员填写信息:
+                complain_practitioner_name: '',
+                complain_id_card: '',
+                complain_telphone: '',
+                complain_cause: '',
+                // complain_complain_info: '',
+                complain_companies: '',
+                complain_companies_company_name: '',
+                complain_incident_time: '',
+                // 投诉雇主填写信息
+                complain_employer_name: '',
+                // complain_id_card: '',
+                // complain_telphone: '',
+                // complain_skills: '',
+                // complain_complain_info: '',
+                // complain_incident_time: ''
+
+            },
             a: 1,
             radio: '1'
         }

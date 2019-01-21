@@ -1,55 +1,48 @@
  <template>
-    <ul class="skill_container">
-        <li v-for="item in list" :key="item.id" class="sk_li">
-            <router-link :to="item.url" class="sk_link">
-                <img :src="item.imgUrl" />
-                <div class="sk_txt">
-                    <h3>{{item.tit}}</h3>
-                    <p>{{item.desc}}</p>
+    <div>
+        <ul class="skill_container">
+            <li v-for="item in list" :key="item.id" class="sk_li">
+                <div @click="showVideo(item.video_url)" class="sk_link">
+                    <img :src="item.imgUrl" />
+                    <div class="sk_txt">
+                        <h3>{{item.video_name}}</h3>
+                        <p>{{item.video_info}}</p>
+                    </div>
                 </div>
-            </router-link>
-        </li>
-    </ul>
+            </li>
+        </ul>
+        <van-dialog
+            v-model="videoShow"
+            >
+            <div 
+                v-on:click="playVideo()"
+                class="video_wrap"
+            >
+                <video :src="url" id="videoPlay" v-show="false" class="video">您的浏览器不支持 video 视屏播放。</video>
+            </div>
+        </van-dialog>
+    </div>
 </template>
 
 <script>
 
-import { mapState, mapMutations } from 'vuex'
+import Vue from 'vue';
+import {mapState, mapMutations} from 'vuex'
+import { Dialog } from 'vant';
+
+Vue.use(Dialog);
+
 export default {
     data(){
         return{
-            list: [
-                {
-                    imgUrl: require('../assets/find.png'),
-                    tit: '培训视频培训视频培训视频培训教程',
-                    desc: '通过视频学习技能',
-                    url: '',
-                },
-                {
-                    imgUrl: require('../assets/find.png'),
-                    tit: '信息资料',
-                    desc: '获取培训资料和信息资料学习技能',
-                    url: '',
-                },
-                {
-                    imgUrl: require('../assets/find.png'),
-                    tit: '培训视频培训视频培训视频培训教程',
-                    desc: '通过视频学习技能',
-                    url: '',
-                },
-                {
-                    imgUrl: require('../assets/find.png'),
-                    tit: '培训视频培训视频培训视频培训教程',
-                    desc: '通过视频学习技能',
-                    url: '',
-                }
-            ]
+            videoShow: false,
+            url: ''
         }
     },
     mounted(){
     
     },
-    props: ['alertText'],
+    props: ['list'],
     computed: {
         ...mapState([
             'count'
@@ -58,13 +51,26 @@ export default {
     methods: {
         closeTip(){
             this.$emit('closeTip')
+        },
+        showVideo(url){
+            console.log(url);
+            this.url = url;
+            this.videoShow = true;
+            // Dialog.alert({
+            //     title: '标题',
+            //     message: ''
+            // }).then(() => {
+            // // on close
+            // });
+
         }
     }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .sk_li {
+    min-height: 80px;
     margin: 10px 0;
     padding: 16px 12px 16px 16px;
     background-color: #fff;
@@ -90,6 +96,13 @@ export default {
     font-size: 12px;
     color: #92979E;
     line-height: 30px;
+}
+.video_wrap {
+    height: 200px;
+    .video {
+        width: 100%;
+        height: 200px;
+    }
 }
 
 </style>
