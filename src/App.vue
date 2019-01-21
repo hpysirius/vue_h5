@@ -52,4 +52,8 @@
 	.van-button--primary {
 		    border: 1px solid #00BEAF!important;
 	}
+	.van-loading {
+		margin: 10px auto;
+
+	}
 </style>

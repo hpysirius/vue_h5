@@ -2,6 +2,7 @@
   	<div>
         <Header title="找家政人员"></Header>
         <div class="wap_scroll">
+            <van-loading type="spinner" v-if="loading" />
             <ul class="per_list">
                 <li v-for="item in list" :key="item.id" class="per_li">
                     <img :src="item.imgUrl" class="per_img" />
@@ -19,16 +20,16 @@
                                 </h3>
                                 <p class="level">星级评价：
                                     <van-rate 
-                                        v-model="item.level"
+                                        v-model="item.star"
                                         :size="10"
                                         color="#00BEAF"
                                         void-color="#00BEAF"
                                     />
                                 </p>
-                                <p class="phone">
+                                <!-- <p class="phone">
                                     <van-icon name="phone" />
                                     {{item.phone}}
-                                </p>
+                                </p> -->
                             </div>
                             <div class="per_right">
                                 <van-button type="primary">雇佣</van-button>
@@ -46,10 +47,10 @@
 </template>
 <script>
 import Vue from 'vue';
-import { Button, Tag, Rate, Icon } from 'vant';
+import { Button, Tag, Rate, Icon, Toast, Loading } from 'vant';
 import { mapState, mapMutations } from 'vuex'
 import {
-    Getpractitioner, Getskills
+    Pullpractitioner, Getskills
 } from "@/service/getData";
 import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
 import Header from '../../components/Header'
@@ -59,33 +60,15 @@ Vue.use(Button);
 Vue.use(Tag);
 Vue.use(Rate);
 Vue.use(Icon);
+Vue.use(Toast);
+Vue.use(Loading);
 
 export default {
     data(){
         return{
+            loading: false,
             AUTHSTSTUS,
-            list: [
-                {
-                    id: 0,
-                    status: 0,
-                    name: '昵称名字',
-                    level: 4,
-                    phone: '18030728562',
-                    imgUrl: require('../../assets/find.png'),
-                    skills: "001",
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
-                },
-                {
-                    id: 1,
-                    status: 1,
-                    name: '昵称名字',
-                    level: 4,
-                    phone: '18030728562',
-                    imgUrl: require('../../assets/find.png'),
-                    skills: "001",
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
-                }
-            ]
+            list: []
         }
     },
     computed: {
@@ -98,19 +81,22 @@ export default {
     },
     methods: {
         async getData() {
-            // const personList =  await Getpractitioner();
-            // console.log(personList);
-            // const skills = await Getskills();
-            // // const personList = this.personList;
-            
-            // personList.map((val, index) => {
-            //     let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
-            //     console.log(skillStr);
-            //     val.desc = skillStr;
-            //     return val;
-            // });
-            
-            // this.list = personList;
+            this.loading = true;
+           const personList =  await Pullpractitioner();
+            const skills = await Getskills();
+            this.loading = false;
+            const list = (personList && personList.list) || [];
+            if(list.length){
+                list.map((val, index) => {
+                    const skillStr = (val.skills && val.skills.split("|").map(skill => SKILL_TYPE[skill]).join(",")) || '';
+                    val.desc = skillStr;
+                    return val;
+                });
+                this.list = list;
+            }else{
+                this.list = [];
+                Toast('暂无数据');
+            }
         }
     },
     components: {

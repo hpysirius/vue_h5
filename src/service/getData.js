@@ -14,3 +14,7 @@ export const GetcertificateByid = params => fetch('/GetcertificateByid', params,
 export const GetcertificateByno = params => fetch('/GetcertificateByno', params, 'get')
 // 7.服务项目列表
 export const Getskills = params => fetch('/Getskills', params, 'get')
+// 17. 找家政人员
+export const Pullpractitioner = params => fetch('/Pullpractitioner', params, 'get')
+// 18. 找家政企业/获取家政企业列表
+export const Pullcompany = params => fetch('/Pullcompany', params, 'get')

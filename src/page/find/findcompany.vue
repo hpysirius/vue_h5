@@ -2,6 +2,7 @@
   	<div>
         <Header title="找家政企业"></Header>
         <div class="wap_scroll">
+            <van-loading type="spinner" v-if="loading" />
             <ul class="per_list">
                 <li v-for="item in list" :key="item.id" class="per_li">
                     <img :src="item.imgUrl" class="per_img" />
@@ -24,7 +25,7 @@
                                 </p>
                                 <p class="level">星级评价：
                                     <van-rate 
-                                        v-model="item.level"
+                                        v-model="item.star"
                                         :size="10"
                                         color="#00BEAF"
                                         void-color="#00BEAF"
@@ -47,11 +48,11 @@
 </template>
 <script>
 import Vue from 'vue';
-import {
-    Getcompany
-} from "@/service/getData";
-import { Button, Tag, Rate, Icon } from 'vant';
+import { Button, Tag, Rate, Icon, Loading } from 'vant';
 import { mapState, mapMutations } from 'vuex'
+import {
+    Pullcompany
+} from "@/service/getData";
 import { AUTHSTSTUS, SKILL_TYPE } from '../../utils/constants';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -60,36 +61,15 @@ Vue.use(Button);
 Vue.use(Tag);
 Vue.use(Rate);
 Vue.use(Icon);
+Vue.use(Loading);
 
 export default {
     data(){
         return{
+            loading: false,
             AUTHSTSTUS,
             SKILL_TYPE,
-            list: [
-                {
-                    id: 0,
-                    status: 0,
-                    name: '某某家政服务有限公司',
-                    level: 4,
-                    contacts: '张经理',
-                    telphone: '18030728562',
-                    imgUrl: require('../../assets/find.png'),
-                    skills: "001|002",
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
-                },
-                {
-                    id: 1,
-                    status: 1,
-                    name: '某某家政服务有限公司',
-                    level: 4,
-                    contacts: '张经理',
-                    telphone: '18030728562',
-                    imgUrl: require('../../assets/find.png'),
-                    skills: "002|000",
-                    desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
-                }
-            ]
+            list: []
         }
     },
     computed: {
@@ -102,15 +82,16 @@ export default {
     },
     methods: {
         async getData() {
-            const comanyList = await Getcompany();
-            // let companyList = this.list;
-            companyList.map((val, index) => {
-                let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
-                console.log(skillStr);
-                val.desc = skillStr;
-                return val;
-            });
-            this.list = companyList;
+            this.loading = true;
+           const personList =  await Pullcompany();
+            this.loading = false;
+            const list = (personList && personList.list) || [];
+            if(list.length){
+                this.list = list;
+            }else{
+                this.list = [];
+                Toast('暂无数据');
+            }
         }
     },
     components: {
