@@ -9,12 +9,12 @@
                 v-for="(item, index) in newsList" :key="item.id" 
                 :class="index < list.length - 1 ? 'news_li' : ''"
             >
-                <a href="#">
+                <router-link :to="item.news_url" class="sk_link">
                     <h3 class="news_tit">{{item.news_title}}</h3>
-                    <p class="news_desc">{{item.news_url}}</p>
+                    <!-- <p class="news_desc">{{item.news_url}}</p> -->
                     <img v-show="item.img" class="news_img" :src="item.cover_picture" />
                     <p class="news_time">{{item.creat_time}}</p>
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>

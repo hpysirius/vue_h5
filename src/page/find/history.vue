@@ -56,7 +56,7 @@ export default {
                     phone: '18030728562',
                     statusUrl: require('../../assets/status0.png'),
                     hasCancel: true,
-                    imgUrl: require('../../assets/banner.png')
+                    imgUrl: require('../../assets/find.png')
                 },
                 {
                     id: 1,
@@ -66,7 +66,7 @@ export default {
                     phone: '18030728562',
                     statusUrl: require('../../assets/status1.png'),
                     hasCancel: false,
-                    imgUrl: require('../../assets/banner.png')
+                    imgUrl: require('../../assets/find.png')
                 },
                 {
                     id: 2,
@@ -76,7 +76,7 @@ export default {
                     phone: '18030728562',
                     statusUrl: require('../../assets/status2.png'),
                     hasCancel: false,
-                    imgUrl: require('../../assets/banner.png')
+                    imgUrl: require('../../assets/find.png')
                 },
                 {
                     id: 3,
@@ -86,7 +86,7 @@ export default {
                     phone: '18030728562',
                     statusUrl: require('../../assets/status3.png'),
                     hasCancel: false,
-                    imgUrl: require('../../assets/banner.png')
+                    imgUrl: require('../../assets/find.png')
                 }
             ]
         }

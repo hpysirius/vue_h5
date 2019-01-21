@@ -35,26 +35,26 @@ export default {
     data(){
         return{
             swiperList: [
-                {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"},
-                {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"}
+                // {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"},
+                // {"pid": 1, "type": 0, "url": "http://jzapi.3pgis.cn/adver_p/ad_p1.png"}
             ],
             newsList: [
-                {
-                    id: 0,
-                    img: true,
-                    news_title: '技能培训合格家政人员名单公示',
-                    news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
-                    cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
-                    creat_time: '2019-01-04 23:23:09'
-                },
-                {
-                    id: 1,
-                    img: false,
-                    news_title: '技能培训合格家政人员名单公示',
-                    news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
-                    cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
-                    creat_time: '2019-01-04 23:23:09'
-                }
+                // {
+                //     id: 0,
+                //     img: true,
+                //     news_title: '技能培训合格家政人员名单公示',
+                //     news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
+                //     cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
+                //     creat_time: '2019-01-04 23:23:09'
+                // },
+                // {
+                //     id: 1,
+                //     img: false,
+                //     news_title: '技能培训合格家政人员名单公示',
+                //     news_url: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道…',
+                //     cover_picture: 'http://jzapi.3pgis.cn/adver_p/ad_p1.png',
+                //     creat_time: '2019-01-04 23:23:09'
+                // }
             ]
         }
     },
@@ -68,12 +68,12 @@ export default {
     },
     methods: {
         async getData(){
-            // const swiperList = await GetAdver({ type: 1 });
-            // this.swiperList = (swiperList && swiperList.list) || [];
-            // console.log(this.swiperList);
-            // const newsList = await GetNews({ type: 1 });
-            // this.newsList = newsList;
-            // console.log(newsList);
+            const swiperList = await GetAdver({ type: 1 });
+            this.swiperList = (swiperList && swiperList.list) || [];
+            console.log(this.swiperList);
+            const newsList = await GetNews();
+            this.newsList = (newsList && newsList.list) || [];
+            console.log(newsList);
         }
     },
     components: {

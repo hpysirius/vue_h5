@@ -20,25 +20,25 @@ export default {
         return{
             list: [
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '投诉',
                     desc: '雇主，家政人员，家政公司投诉',
                     url: './comp',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '法律咨询',
                     desc: '法律专家咨询，留言咨询',
                     url: './low',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '合同模版',
                     desc: '劳动合同，服务合同模版下载',
                     url: './contract',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '黑名单',
                     desc: '家政人员，家政公司黑名单查询',
                     url: './company',

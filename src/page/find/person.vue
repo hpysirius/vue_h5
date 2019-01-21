@@ -71,7 +71,7 @@ export default {
                     name: '昵称名字',
                     level: 4,
                     phone: '18030728562',
-                    imgUrl: require('../../assets/banner.png'),
+                    imgUrl: require('../../assets/find.png'),
                     skills: "001",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 },
@@ -81,7 +81,7 @@ export default {
                     name: '昵称名字',
                     level: 4,
                     phone: '18030728562',
-                    imgUrl: require('../../assets/banner.png'),
+                    imgUrl: require('../../assets/find.png'),
                     skills: "001",
                     desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
                 }
@@ -98,18 +98,19 @@ export default {
     },
     methods: {
         async getData() {
-            // const personList =  Getpractitioner();
-            const skills = Getskills();
-            const personList = this.list;
+            // const personList =  await Getpractitioner();
+            // console.log(personList);
+            // const skills = await Getskills();
+            // // const personList = this.personList;
             
-            personList.map((val, index) => {
-                let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
-                console.log(skillStr);
-                val.desc = skillStr;
-                return val;
-            });
+            // personList.map((val, index) => {
+            //     let skillStr = val.skills.split("|").map(skill => {return SKILL_TYPE[skill]}).join(",");
+            //     console.log(skillStr);
+            //     val.desc = skillStr;
+            //     return val;
+            // });
             
-            this.list = personList;
+            // this.list = personList;
         }
     },
     components: {

@@ -102,7 +102,7 @@ export default {
                 nickname: '昵称名字',
                 level: 4,
                 phone: '18030728562',
-                imgUrl: require('../../assets/banner.png'),
+                imgUrl: require('../../assets/find.png'),
                 desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
             },
             info: {

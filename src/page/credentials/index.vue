@@ -3,11 +3,12 @@
         <Header title="证书查询"></Header>
         <div class="wap_scroll">
             <div class="wap_swipe">
-                <van-swipe :autoplay="3000">
+                <Swiper :swiperList="swiperList"></Swiper>
+                <!-- <van-swipe :autoplay="3000">
                     <van-swipe-item v-for="(image, index) in images" :key="index">
                         <img :src="image" />
                     </van-swipe-item>
-                </van-swipe>
+                </van-swipe> -->
             </div>
             <van-tabs v-model="active" class="wap_tabs">
                 <van-tab title="身份证查询">
@@ -69,10 +70,12 @@ import { mapState, mapMutations } from 'vuex'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Skill from '../../components/Skill'
+import Swiper from '../../components/Swiper'
 import { Tab, Tabs, Swipe, SwipeItem, Field, Button } from 'vant'
 import {
  GetcertificateByid,
- GetcertificateByno
+ GetcertificateByno,
+ GetAdver
 } from "@/service/getData";
 
 Vue.use(Button);
@@ -101,10 +104,10 @@ export default {
                 issuing_authority: 'XXXX家政协会',
                 issuing_date: '2018-11-02'
             },
-            images: [
-                require('../../assets/banner.png'),
-                require('../../assets/banner.png'),
-                require('../../assets/banner.png')
+            swiperList: [
+                // require('../../assets/banner.png'),
+                // require('../../assets/banner.png'),
+                // require('../../assets/banner.png')
             ],
             a: 1,
             active: 0
@@ -115,8 +118,17 @@ export default {
             'userInfo'
         ]),
     },
+    created() {
+        this.getData();
+    },
     methods: {
-        async submit(){
+        async getData(){
+            const swiperList = await GetAdver({ type: 1 });
+            this.swiperList = (swiperList && swiperList.list) || [];
+            // const newsList = await GetNews();
+            // this.newsList = (newsList && newsList.list) || [];
+        },
+        submit(){
             // if(this.active === 0){
             //     const data = await GetcertificateByid(this.paramId);
             // }else{
@@ -131,6 +143,7 @@ export default {
         Footer,
         Header,
         Skill,
+        Swiper
     },
     
 }

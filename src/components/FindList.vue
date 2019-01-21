@@ -20,19 +20,19 @@ export default {
         return{
             list: [
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '找家政人员',
                     desc: '查找实名认证的从业人员',
                     url: './person',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '找家政企业',
                     desc: '查找认证的家政企业',
                     url: './findcompany',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '订单记录',
                     desc: '历史订单列表',
                     url: './history',

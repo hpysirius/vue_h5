@@ -20,25 +20,25 @@ export default {
         return{
             list: [
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '培训视频培训视频培训视频培训教程',
                     desc: '通过视频学习技能',
                     url: '',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '信息资料',
                     desc: '获取培训资料和信息资料学习技能',
                     url: '',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '培训视频培训视频培训视频培训教程',
                     desc: '通过视频学习技能',
                     url: '',
                 },
                 {
-                    imgUrl: require('../assets/banner.png'),
+                    imgUrl: require('../assets/find.png'),
                     tit: '培训视频培训视频培训视频培训教程',
                     desc: '通过视频学习技能',
                     url: '',
