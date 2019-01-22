@@ -1,7 +1,7 @@
 <template>
   	<div>
         <Header title="行业资讯"></Header>
-        <div class="wap_scroll">
+        <div class="news_scroll">
             <div>
                 <div class="scorll_wrap">
                     <Swiper :swiperList="swiperList"></Swiper>
@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss">
 @import '../../style/mixin/border-retina.scss';
-.wap_scroll {
+.news_scroll {
     background-color: #f3f6fb;
     // padding: 10px 8px 0;
     overflow-y: auto;

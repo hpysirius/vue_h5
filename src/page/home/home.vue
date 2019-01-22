@@ -72,6 +72,9 @@ export default {
             this.swiperList = (swiperList && swiperList.list) || [];
             const newsList = await GetNews();
             this.newsList = (newsList && newsList.list) || [];
+            if(this.newsList.length > 4){
+                this.newsList.length = 4;
+            }
         }
     },
     components: {
