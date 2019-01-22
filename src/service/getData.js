@@ -20,3 +20,17 @@ export const Pullpractitioner = params => fetch('/Pullpractitioner', params, 'ge
 export const Pullcompany = params => fetch('/Pullcompany', params, 'get')
 // 18. 视频列表
 export const Getlearnvideo = params => fetch('/Getlearnvideo', params, 'get')
+// 3. 合同模版
+export const Getmateral = params => fetch('/Getmateral', params, 'get')
+// 13.新建咨询问题
+export const Postlegalconsulting = params => fetch('/Postlegalconsulting', params, 'post')
+// 14.更新咨询问题状态
+export const Updatelegalconsulting = params => fetch('/Updatelegalconsulting', params, 'post')
+// 15.追加问题/回复
+export const Postlegalconsultinginfo = params => fetch('/Postlegalconsultinginfo', params, 'post')
+// 19.用户登录
+export const Login = params => fetch('/Login', params, 'get')
+// 20.用户注册
+export const Register = params => fetch('/Register', params, 'get')
+// 21.用户信息查询（个人中心）
+export const Getuserinfo = params => fetch('/Getuserinfo', params, 'get')

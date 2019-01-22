@@ -8,7 +8,7 @@
             <van-cell-group class="input_con">
                 <div class="input_wrap">
                     <van-field
-                        v-model="username"
+                        v-model="params.username"
                         placeholder="请输入用户名"
                         :left-icon="user_icon"
                         :error="false"
@@ -16,8 +16,9 @@
                 </div>
                 <div class="input_wrap">
                     <van-field
-                        v-model="phone"
+                        v-model="params.pwd"
                         :left-icon="pa_icon"
+                        type="password"
                         placeholder="请输入用户名登录密码"
                         :error="false"
                     />
@@ -27,7 +28,7 @@
                 <p class="find_password">忘记密码 ？</p>
             </router-link>
             <div class="btn_wrap">
-                <van-button type="primary" size="large">登录</van-button>
+                <van-button @click="submit" type="primary" size="large">登录</van-button>
                 <router-link to="./register">
                     <van-button type="default" size="large">注册</van-button>
                 </router-link>
@@ -41,10 +42,13 @@
 import Vue from 'vue';
 import { RadioGroup, Radio } from 'vant';
 import { mapState, mapMutations } from 'vuex'
+import {
+ Login
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Skill from '../../components/Skill'
-import { Tab, Tabs, Swipe, SwipeItem, Field, Button } from 'vant'
+import { Tab, Tabs, Swipe, SwipeItem, Field, Button, Toast } from 'vant'
 
 Vue.use(Button);
 Vue.use(Field);
@@ -52,6 +56,7 @@ Vue.use(Tab).use(Tabs);
 Vue.use(Swipe).use(SwipeItem);
 Vue.use(RadioGroup);
 Vue.use(Radio);
+Vue.use(Toast);
 export default {
     data(){
         return{
@@ -59,13 +64,32 @@ export default {
             user_icon: require('../../assets/user_icon.png'),
             images: require('../../assets/logo.png'),
             a: 1,
-            active: 2
+            active: 2,
+            params: {
+                username: '',
+                pwd: ''
+            }
         }
     },
     computed: {
          ...mapState([
             'userInfo'
         ]),
+    },
+    methods: {
+        async submit(){
+            if(this.params.username && this.params.pwd){
+                const data = await Login(this.params);
+                if(data.result === 'False'){
+                    Toast(data.msg || '请求错误');
+                }else{
+                    this.$router.push({ path: '/', query: data });
+                }
+            }else{
+                Toast('用户名或密码不能为空');
+                return;
+            }
+        }
     },
     components: {
         Footer,

@@ -4,20 +4,20 @@
         <div class="wap_scroll">
             <ul class="low_container">
                 <li v-for="item in list" :key="item.id" class="low_li">
-                    <router-link :to="item.url" class="low_link">
-                        <img :src="item.imgUrl" />
-                        <div class="low_txt">
-                            <van-row>
-                                <van-col span="16">
-                                    <h3>{{item.tit}}</h3>
-                                    <p>{{item.desc}}</p>
-                                </van-col>
-                                <van-col span="8">
+                    <img :src="item.imgUrl || contractUrl" />
+                    <div class="low_txt">
+                        <van-row>
+                            <van-col span="16">
+                                <h3>{{item.materal_name}}</h3>
+                                <p>{{item.creat_time}}</p>
+                            </van-col>
+                            <van-col span="8">
+                                <a :href="item.materal_url">
                                     <van-button class="down" type="primary">下载</van-button>
-                                </van-col>
-                            </van-row>
-                        </div>
-                    </router-link>
+                                </a>
+                            </van-col>
+                        </van-row>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -28,6 +28,9 @@
 import Vue from 'vue';
 import {mapState, mapMutations} from 'vuex'
 import { Button, Row, Col } from 'vant';
+import {
+ Getmateral
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -37,26 +40,24 @@ export default {
     data(){
         return{
             a: 1,
-            list: [
-                {
-                    imgUrl: require('../../assets/banner.png'),
-                    tit: '合同模板1',
-                    desc: '甲方为个人',
-                    url: './comp',
-                },
-                {
-                    imgUrl: require('../../assets/banner.png'),
-                    tit: '合同模板2',
-                    desc: '甲方为个人',
-                    url: './low',
-                }
-            ]
+            contractUrl: require('../../assets/contract.png'),
+            list: []
         }
     },
     computed: {
          ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData(){
+            const data = await Getmateral({ type: 1 });
+            console.log(data);
+            this.list = (data && data.list) || [];
+        }
     },
     components: {
         Footer,

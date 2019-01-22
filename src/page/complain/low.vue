@@ -3,7 +3,9 @@
         <Header title="法律咨询"></Header>
         <div class="wap_scroll">
             <div class="low_btn">
-                <van-button size="large" type="default">新建咨询</van-button>
+                <router-link to="./addLow" class="f_nav f_main">
+                     <van-button size="large" type="default">新建咨询</van-button>
+                </router-link>
             </div>
             <ul class="low_container">
                 <li v-for="item in list" :key="item.id" class="low_li">
