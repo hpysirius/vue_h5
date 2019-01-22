@@ -83,6 +83,7 @@ export default {
                 if(data.result === 'False'){
                     Toast(data.msg || '请求错误');
                 }else{
+                    this.$store.commit("SET_RESULT", data);
                     this.$router.push({ path: '/', query: data });
                 }
             }else{

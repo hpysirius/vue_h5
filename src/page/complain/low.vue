@@ -7,16 +7,17 @@
                      <van-button size="large" type="default">新建咨询</van-button>
                 </router-link>
             </div>
+            <van-loading type="spinner" v-if="loading" />
             <ul class="low_container">
                 <li v-for="item in list" :key="item.id" class="low_li">
-                    <router-link :to="item.url" class="low_link">
-                        <img :src="item.imgUrl" />
+                    <!-- <router-link :to="item.url" class="low_link"> -->
+                        <img :src="item.imgUrl || imageUrl" />
                         <div class="low_txt">
-                            <h3>{{item.tit}}</h3>
-                            <p><span>对话条数：</span>{{item.num}}</p>
-                            <p><span>更新时间：</span>{{item.updatetime}}</p>
+                            <h3>{{item.title}}</h3>
+                            <p><span>问题：</span>{{item.question}}</p>
+                            <p><span>更新时间：</span>{{item.creat_time}}</p>
                         </div>
-                    </router-link>
+                    <!-- </router-link> -->
                 </li>
             </ul>
         </div>
@@ -26,15 +27,21 @@
 <script>
 import Vue from 'vue';
 import {mapState, mapMutations} from 'vuex'
-import { Button } from 'vant';
+import { Button, Loading } from 'vant';
+import {
+ Getlegalconsulting
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 Vue.use(Button);
+Vue.use(Loading);
 export default {
     data(){
         return{
             a: 1,
+            loading: false,
+            imageUrl: require('../../assets/find.png'),
             list: [
                 {
                     imgUrl: require('../../assets/banner.png'),
@@ -57,6 +64,19 @@ export default {
          ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData(){
+            const { uid } = this.$store.state.result
+            this.loading = true;
+            const data = await Getlegalconsulting({ uid: uid || 0 });
+            this.loading = false;
+            console.log(data);
+            this.list = (data && data.list) || [];
+        }
     },
     components: {
         Footer,
@@ -92,7 +112,7 @@ export default {
         margin: 10px 0;
         padding: 16px 12px 16px 16px;
         background-color: #fff;
-
+        min-height: 75px;
     }
     .low_li img {
         float: left;

@@ -1,5 +1,11 @@
 // import server from './server'
+import qs from 'qs'
 import { getServer } from '../utils/share'
+
+// const contentType = {
+//   'json': 'application/json',
+//   'form': 'application/x-www-form-urlencoded; charset=UTF-8'
+// }
 
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase()
@@ -27,7 +33,6 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       mode: 'cors',
       cache: 'force-cache'
     }
-
     if (type === 'POST') {
       Object.defineProperty(requestConfig, 'body', {
         value: JSON.stringify(data)
@@ -52,7 +57,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
 
       let sendData = ''
       if (type === 'POST') {
-        sendData = JSON.stringify(data)
+        sendData = qs.stringify(data)
       }
 
       requestObj.open(type, url, true)

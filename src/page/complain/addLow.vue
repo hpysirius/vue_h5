@@ -39,7 +39,7 @@ export default {
     data(){
         return{
             params: {
-                uid: 0,
+                // uid: 0,
                 title: '',
                 question: ''
             }
@@ -47,22 +47,25 @@ export default {
     },
     computed: {
          ...mapState([
-            'userInfo'
+            'userInfo', 'result'
         ]),
     },
     methods: {
         async submit(){
+            const { uid } = this.$store.state.result
             if(this.params.title && this.params.question){
-                const data = await Postlegalconsulting(this.params);
-                console.log(data);
-                this.resultId = (data && data.list) || [];
+                const data = await Postlegalconsulting({ ...this.params, uid: uid || 0 });
+                if(data.result === 'True'){
+                    Toast('新建成功');
+                    this.$router.push({ path: '/low' });
+                }
             }else{
                 Toast('标题或回复不能为空');
                 return;
             }
-            if(this.resultId.length){
-                this.$router.push({ path: '/credInfo', query: this.resultId });
-            }
+            // if(this.resultId.length){
+            //     this.$router.push({ path: '/credInfo', query: this.resultId });
+            // }
         }
     },
     components: {

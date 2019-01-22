@@ -10,6 +10,9 @@
             </div>
             <Nav></Nav>
             <News :newsList="newsList"></News>
+            <a href="http://jzapi.3pgis.cn/apk/jz.apk" class="btn_wrap btn_down">
+                 <van-button @click="submit" type="primary" size="large">APP下载</van-button>
+            </a>
         </div>
         <Footer></Footer>
     </div>
@@ -23,7 +26,7 @@ import {
  GetNews
 } from "@/service/getData";
 import Header from '../../components/Header'
-import { Search } from 'vant';
+import { Search, Button } from 'vant';
 import Banner from '../../components/Banner'
 import Nav from '../../components/Nav'
 import Footer from '../../components/Footer'
@@ -31,6 +34,7 @@ import Swiper from '../../components/Swiper'
 import News from '../../components/News'
 
 Vue.use(Search);
+Vue.use(Button);
 export default {
     data(){
         return{
@@ -118,5 +122,25 @@ export default {
 .wap_scroll {
     overflow-y: auto;
     margin: 44px 0 53px;
+}
+.btn_down {
+    display: block;
+    margin-top: 20px;
+    padding: 6px 16px 10px;
+    .van-button--large {
+        height: 45px;
+        margin: 8px 0;
+        line-height: 45px;
+        border-radius: 4px;
+    }
+    .van-button--primary {
+        font-size: 16px;
+        background-color: #00BEAF;
+        color: #FFF;
+    }
+    .van-button--default {
+        border-color: #00BEAF;
+        color: #00BEAF;
+    }
 }
 </style>

@@ -23,7 +23,7 @@ export const Getlearnvideo = params => fetch('/Getlearnvideo', params, 'get')
 // 3. 合同模版
 export const Getmateral = params => fetch('/Getmateral', params, 'get')
 // 13.新建咨询问题
-export const Postlegalconsulting = params => fetch('/Postlegalconsulting', params, 'post')
+export const Postlegalconsulting = params => fetch('/Postlegalconsulting', params, 'post', '')
 // 14.更新咨询问题状态
 export const Updatelegalconsulting = params => fetch('/Updatelegalconsulting', params, 'post')
 // 15.追加问题/回复
@@ -34,3 +34,5 @@ export const Login = params => fetch('/Login', params, 'get')
 export const Register = params => fetch('/Register', params, 'get')
 // 21.用户信息查询（个人中心）
 export const Getuserinfo = params => fetch('/Getuserinfo', params, 'get')
+// 12.用户咨询问题列表
+export const Getlegalconsulting = params => fetch('/Getlegalconsulting', params, 'get')

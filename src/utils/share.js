@@ -14,3 +14,13 @@ export const OTOKEY = (val) => {
   })
   return obj
 }
+
+// 把对象转换为FormData
+export const toFormData = (originData) => {
+  const formData = new FormData()
+  Object.keys(originData).map(item => {
+    formData.append(item, originData[item])
+  })
+  console.log(formData)
+  return formData
+}
