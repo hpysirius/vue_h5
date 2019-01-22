@@ -3,7 +3,7 @@
         <ul class="skill_container">
             <li v-for="item in list" :key="item.id" class="sk_li">
                 <div @click="showVideo(item.video_url)" class="sk_link">
-                    <img :src="item.imgUrl" />
+                    <img :src="item.imgUrl || videoImgurl" />
                     <div class="sk_txt">
                         <h3>{{item.video_name}}</h3>
                         <p>{{item.video_info}}</p>
@@ -13,12 +13,19 @@
         </ul>
         <van-dialog
             v-model="videoShow"
+            :showConfirmButton="false"
+            :showCancelButton="true"
             >
             <div 
                 v-on:click="playVideo()"
                 class="video_wrap"
             >
-                <video :src="url" id="videoPlay" v-show="false" class="video">您的浏览器不支持 video 视屏播放。</video>
+                <video 
+                    controls="controls"
+                    :src="url" 
+                    id="videoPlay"
+                    class="video"
+                >您的浏览器不支持 video 视屏播放。</video>
             </div>
         </van-dialog>
     </div>
@@ -35,6 +42,7 @@ Vue.use(Dialog);
 export default {
     data(){
         return{
+            videoImgurl: require('../assets/video_b.png'),
             videoShow: false,
             url: ''
         }
@@ -101,7 +109,7 @@ export default {
     height: 200px;
     .video {
         width: 100%;
-        height: 200px;
+        height: 100%;
     }
 }
 

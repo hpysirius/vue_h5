@@ -1,13 +1,13 @@
  <template>
     <div class="news_container">
         <div class="new_nav">
-            <span>行业咨询</span>
+            <span>行业资讯</span>
             <router-link to="./news" class="link"></router-link>
         </div>
         <ul class="news_list">
             <li 
                 v-for="(item, index) in newsList" :key="item.id" 
-                :class="index < list.length - 1 ? 'news_li' : ''"
+                :class="index < newsList.length - 1 ? 'news_li' : ''"
             >
                 <a :href="item.news_url" class="sk_link">
                     <h3 class="news_tit">{{item.news_title}}</h3>
