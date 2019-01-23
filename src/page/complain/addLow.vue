@@ -63,9 +63,6 @@ export default {
                 Toast('标题或回复不能为空');
                 return;
             }
-            // if(this.resultId.length){
-            //     this.$router.push({ path: '/credInfo', query: this.resultId });
-            // }
         }
     },
     components: {

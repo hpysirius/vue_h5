@@ -10,14 +10,14 @@
             <van-loading type="spinner" v-if="loading" />
             <ul class="low_container">
                 <li v-for="item in list" :key="item.id" class="low_li">
-                    <!-- <router-link :to="item.url" class="low_link"> -->
+                    <router-link :to="{path: './lowDetail', query: item}" class="low_link">
                         <img :src="item.imgUrl || imageUrl" />
                         <div class="low_txt">
                             <h3>{{item.title}}</h3>
                             <p><span>问题：</span>{{item.question}}</p>
                             <p><span>更新时间：</span>{{item.creat_time}}</p>
                         </div>
-                    <!-- </router-link> -->
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -42,22 +42,7 @@ export default {
             a: 1,
             loading: false,
             imageUrl: require('../../assets/find.png'),
-            list: [
-                {
-                    imgUrl: require('../../assets/banner.png'),
-                    tit: '雇主提前解约',
-                    num: '36条',
-                    url: './comp',
-                    updatetime: '2019-01-06  23:23:34'
-                },
-                {
-                    imgUrl: require('../../assets/banner.png'),
-                    tit: '法律咨询',
-                    num: '36条',
-                    url: './low',
-                    updatetime: '2019-01-06  23:23:34'
-                }
-            ]
+            list: []
         }
     },
     computed: {

@@ -27,7 +27,7 @@ export const Postlegalconsulting = params => fetch('/Postlegalconsulting', param
 // 14.更新咨询问题状态
 export const Updatelegalconsulting = params => fetch('/Updatelegalconsulting', params, 'post')
 // 15.追加问题/回复
-export const Postlegalconsultinginfo = params => fetch('/Postlegalconsultinginfo', params, 'post')
+export const Postlegalconsultinginfo = params => fetch('/Postlegalconsultinginfo', params, 'post', '')
 // 19.用户登录
 export const Login = params => fetch('/Login', params, 'get')
 // 20.用户注册
