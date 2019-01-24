@@ -3,12 +3,12 @@
         <Header title="法律咨询"></Header>
         <div class="wap_scroll add_low">
             <div class="ld_con">
-                <p class="ld_tit">知乎是中文互联网知名知识分享平台?</p>
+                <p class="ld_tit">{{item.title}}</p>
                 <p class="ld_detail">
-                    知乎是中文互联网知名知识分享平台?接一切」为愿景,致力于构建一个人人都可以便捷接入的知识分享网络,让人们便捷地与世界分享知识、经验？
+                    {{item.question}}
                 </p>
                 <p class="ld_time">
-                    创建时间：2019-01-06 21:23:21
+                    创建时间：{{item.creat_time}}
                 </p>
   	        </div>
             <div class="ld_reply">
@@ -29,14 +29,14 @@
             </div>
 
             <p class="label_radio">
-                <van-radio-group v-model="radio">
-                    <van-radio name="1">继续咨询</van-radio>
-                    <van-radio name="2">已解决</van-radio>
+                <van-radio-group v-model="params.type">
+                    <van-radio name="0">继续咨询</van-radio>
+                    <van-radio name="1">已解决</van-radio>
                 </van-radio-group>
             </p>
             <van-field
                 class="textarea_input"
-                v-model="params.question"
+                v-model="params.information"
                 type="textarea"
                 placeholder="请输入回复"
                 rows="8"
@@ -54,7 +54,8 @@ import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex'
 import { Field, Cell, CellGroup, Button, Toast, RadioGroup, Radio } from 'vant';
 import {
- Getlegalconsultinginfo
+ Getlegalconsultinginfo,
+ Postlegalconsultinginfo
 } from "@/service/getData";
 import { Q_TYPE } from '@/utils/constants';
 import Header from '../../components/Header'
@@ -71,10 +72,10 @@ export default {
         return{
             Q_TYPE,
             radio: '1',
+            list: [],
             params: {
-                // uid: 0,
-                title: '',
-                question: ''
+                type: '0',
+                information: ''
             }
         }
     },
@@ -88,24 +89,24 @@ export default {
     },
     methods: {
         async getData(){
-            // const { uid } = this.$store.state.result
             const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
             this.loading = true;
             const params = this.$route.query;
-            const data = await Getlegalconsultinginfo({ qid: 0 });
+            this.item = params;
+            const data = await Getlegalconsultinginfo({ qid:  params.id });
             this.loading = false;
             this.list = (data && data.list) || [];
         },
         async submit(){
-            const { uid } = this.$store.state.result
-            if(this.params.title && this.params.question){
-                const data = await Postlegalconsulting({ ...this.params, uid: uid || 0 });
+            const params = this.$route.query;
+            if((this.params.information && this.params.type === '0') || this.params.type === '1'){
+                const data = await Postlegalconsultinginfo({ ...this.params, uid: params.uid, qid: params.id });
                 if(data.result === 'True'){
-                    Toast('新建成功');
+                    Toast('操作成功');
                     this.$router.push({ path: '/low' });
                 }
             }else{
-                Toast('标题或回复不能为空');
+                Toast('回复不能为空');
                 return;
             }
         }

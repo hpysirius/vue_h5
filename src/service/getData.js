@@ -40,3 +40,7 @@ export const Getlegalconsulting = params => fetch('/Getlegalconsulting', params,
 export const Getcontracttemplates = params => fetch('/Getcontracttemplates', params, 'get')
 // 22.法律咨询附加信息查询（咨询详情）
 export const Getlegalconsultinginfo = params => fetch('/Getlegalconsultinginfo', params, 'get')
+// 15.追加问题/回复
+export const Postcomplaininfo = params => fetch('/Postcomplaininfo', params, 'post', '')
+// 15.投诉原因列表
+export const Getcause = params => fetch('/Getcause', params, 'get')

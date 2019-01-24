@@ -13,3 +13,7 @@ export const Q_TYPE = {
   0: '追加问题',
   1: '答复问题'
 }
+
+export const YMD = 'YYYY-MM-DD'
+export const YMDHM = 'YYYY-MM-DD HH:mm'
+export const YMDHMS = 'YYYY-MM-DD HH:mm:ss'

@@ -4,7 +4,6 @@
         <div class="wap_scroll">
             <h3 class="com_tit">投诉信息</h3>
             <div class="com_con">
-                <van-cell-group>
                    <van-cell title="单元格">
                         <template slot="title"> 
                             <span class="comvan-title">投诉对象：</span>
@@ -15,47 +14,107 @@
                             </van-radio-group>
                         </template>
                    </van-cell>
-                   <van-cell 
-                    title="企业名称" 
-                    v-model="form.complain_company_name"
-                    is-link 
-                    value="请选择投诉企业"
-                    @click="openSelectCompany"
-                   />
-                   <van-cell title="信用代码" value="填写企业后自动填充" />
-                   <van-cell 
-                    title="服务类型"
-                    is-link
-                    value=""
-                    @click="openSelectSkills"
-                   />
-                   <van-cell-group>
+                   <van-cell-group v-if="form.complain_type === '0'">
+                    <van-cell 
+                        title="企业名称" 
+                        v-model="form.complain_company_name"
+                        is-link 
+                        value="请选择投诉企业"
+                        @click="openSelectCompany"
+                    />
+                    <van-cell v-model="form.complain_company_code" title="信用代码" value="填写企业后自动填充" />
+                    <van-cell 
+                        title="服务类型"
+                        is-link
+                        v-model="form.complain_skillsName"
+                        @click="openSelectSkills"
+                    />
+                        <van-field
+                            v-model="form.complain_complain_info"
+                            label="投诉说明"
+                            type="textarea"
+                            placeholder="请填写投诉说明，最多不超过300字"
+                            rows="4"
+                            autosize
+                        />
+                </van-cell-group>
+                <van-cell-group v-if="form.complain_type === '1'">
+                    <van-field label="姓名" v-model="form.complain_practitioner_name" placeholder="请填写姓名" />
+                    <van-field label="身份证号" v-model="form.complain_id_card" placeholder="请填写身份证号" />
+                    <van-field label="联系电话" v-model="form.complain_telphone" placeholder="请填写联系电话" />
+                    <van-cell 
+                        title="投诉原因" 
+                        v-model="complain_cause_name"
+                        is-link 
+                        value="请选择投诉原因"
+                        @click="openSelectCause"
+                    />
+                    <!-- <van-checkbox-group class="cause_list" v-model="form.complain_cause">
+                        <van-checkbox
+                            v-for="(item) in causeList"
+                            :key="item.code"
+                            :name="item.cause"
+                        >   
+                         {{ item.cause }}
+                        </van-checkbox>
+                    </van-checkbox-group> -->
                     <van-field
-                        v-model="message"
+                        v-model="form.complain_complain_info"
                         label="投诉说明"
                         type="textarea"
                         placeholder="请填写投诉说明，最多不超过300字"
                         rows="4"
                         autosize
                     />
-                    </van-cell-group>
+                    <van-cell>
+                        <template slot="title"> 
+                            <span class="comvan-title">从业人员是否有挂靠公司：</span>
+                            <van-radio-group v-model="form.complain_companies">
+                                <van-radio name="0">没有</van-radio>
+                                <van-radio name="1">有</van-radio>
+                            </van-radio-group>
+                        </template>
+                   </van-cell>
+                   <van-cell 
+                        v-if="form.complain_companies === '0'"
+                        title="企业名称" 
+                        v-model="form.complain_companies_company_name"
+                        is-link 
+                        value="请选择公司名称"
+                        @click="openSelectCompany"
+                    />
+                    <van-cell 
+                        title="事发时间" 
+                        v-model="form.complain_incident_time"
+                        is-link 
+                        value="请选择事发时间"
+                        @click="openSelectDate"
+                    />
                 </van-cell-group>
             </div>
             <h3 class="com_tit">投诉人信息</h3>
             <div class="com_con">
-                <van-cell-group>
+                
                    <van-cell title="单元格">
                         <template slot="title"> 
                             <span class="comvan-title">投诉对象：</span>
-                            <van-radio-group v-model="radio">
-                                <van-radio name="1">家政企业</van-radio>
-                                <van-radio name="3">雇主</van-radio>
+                            <van-radio-group v-model="form.plaintiff_type">
+                                <van-radio name="0">家政人员</van-radio>
+                                <van-radio name="1">雇主</van-radio>
+                                <van-radio name="2">公司</van-radio>
                             </van-radio-group>
                         </template>
                    </van-cell>
-                   <van-field label="投诉人" v-model="value" placeholder="请填写姓名" />
-                   <van-field label="联系电话" v-model="value" placeholder="请填写联系电话" />
-                   <van-field
+                   <van-cell-group v-if="form.plaintiff_type !== '2'">
+                    <van-field label="投诉人" v-model="form.plaintiff_name" placeholder="请填写姓名" />
+                    <van-field label="联系电话" v-model="form.plaintiff_telphone" placeholder="请填写联系电话" />
+                   </van-cell-group>
+                   <van-cell-group v-if="form.plaintiff_type === '2'">
+                    <van-field label="企业名称" v-model="form.plaintiff_company_name" placeholder="请填写企业名称" />
+                    <van-field label="联系人" v-model="form.paintiff_contacts" placeholder="请填写姓名" />
+                    <van-field label="联系电话" v-model="form.plaintiff_telphone" placeholder="请填写联系电话" />
+                   </van-cell-group>
+                   <!-- <van-field
                         v-model="sms"
                         center
                         clearable
@@ -63,29 +122,43 @@
                         placeholder="请输入验证码"
                     >
                         <van-button slot="button" size="small" plain type="primary">获取验证码</van-button>
-                    </van-field>
-                </van-cell-group>
+                    </van-field> -->
+                
             </div>
             <div class="btn">
-                <van-button size="large" type="default">查询</van-button>
+                <van-button @click="submit" size="large" type="default">查询</van-button>
             </div>
         </div>
         <Footer></Footer>
+        <van-popup v-model="showDate" position="bottom" :overlay="false">
+            <van-datetime-picker
+                v-model="currentDate"
+                type="datetime"
+                :min-date="minDate"
+                :max-date="maxDate"
+                @confirm="confirmDate"
+            />
+        </van-popup>
         <van-actionsheet
             v-model="show"
             :actions="selectList"
             cancel-text="取消"
-            @select="onSelectCompany"
+            @select="onSelect"
         />
+        
     </div>
 </template>
 <script>
 import Vue from 'vue';
-import { RadioGroup, Radio, Cell, CellGroup, Field, Button, Actionsheet } from 'vant';
+import { RadioGroup, Radio, Cell, CellGroup, 
+Field, Button, Actionsheet, Toast, Checkbox, 
+CheckboxGroup, DatetimePicker, Popup } from 'vant';
 import { mapState, mapMutations } from 'vuex'
 import {
- Pullcompany, Getskills
+ Pullcompany, Getskills, Postcomplaininfo, Getcause
 } from "@/service/getData";
+import { YMDHMS } from '@/utils/constants'
+import moment from 'moment';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ComplainList from '../../components/ComplainList'
@@ -96,41 +169,56 @@ Vue.use(Radio);
 Vue.use(Cell).use(CellGroup);
 Vue.use(Field);
 Vue.use(Actionsheet);
+Vue.use(Toast);
+Vue.use(Checkbox).use(CheckboxGroup);
+Vue.use(DatetimePicker);
+Vue.use(Popup);
 export default {
     data(){
         return{
+            showDate: false,
             show: false,
             showType: '',
             selectList: [],
             companyList: [],
             killsList: [],
+            causeList: '',
+            selected: [],
+            complain_cause_name: '',
+            currentDate: new Date(),
+            minDate: new Date(2010, 10, 1),
+            maxDate: new Date(),
             form: {
                 // 投诉企业填写信息
                 complain_type: '0',
-                complain_company_name: '',
-                complain_company_code: '',
-                complain_skills: '',
-                complain_complain_info: '',
+                complain_company_name: '', // 企业名称
+                complain_company_code: '', // 信用代码
+                complain_skills: '',    // 服务类型
+                complain_complain_info: '', // 
                 // 投投诉从业人员填写信息:
                 complain_practitioner_name: '',
                 complain_id_card: '',
                 complain_telphone: '',
                 complain_cause: '',
                 // complain_complain_info: '',
-                complain_companies: '',
+                complain_companies: '0',
                 complain_companies_company_name: '',
                 complain_incident_time: '',
                 // 投诉雇主填写信息
                 complain_employer_name: '',
+                // 投诉人类型：0家政人员,1雇主,2公司
+                // 家政人员或雇主填写信息
+                plaintiff_type: '0',
+                plaintiff_name: '',
+                plaintiff_telphone: ''
+                // 
                 // complain_id_card: '',
                 // complain_telphone: '',
                 // complain_skills: '',
                 // complain_complain_info: '',
                 // complain_incident_time: ''
 
-            },
-            a: 1,
-            radio: '1'
+            }
         }
     },
     computed: {
@@ -147,10 +235,17 @@ export default {
             const params = this.$route.query;
             const companyData = await Pullcompany({ uid: params.uid || 0, qid: params.id });
             this.companyList = (companyData && companyData.list) || [];
-            const killsData = await Getskills({ uid: params.uid || 0, qid: params.id });
+            const killsData = await Getskills();
             const killsList = (killsData && killsData.list) || [];
-            this.killsList = killsList.map(item => { return {name: item.skill} });
-            console.log(this.killsList);
+            const causeData = await Getcause();
+            const causeList = (causeData && causeData.list) || [];
+            this.causeList = causeList.map(item => { 
+                item.name = item.cause 
+                return item;
+            });
+
+            this.killsList = killsList.map(item => { return {name: item.skill, code:item.code } });
+            console.log(this.causeList);
         },
         openSelectCompany(){
             this.showType = 'company';
@@ -162,14 +257,62 @@ export default {
             this.selectList = this.killsList;
             this.show = true;
         },
-        onSelectCompany(item){
-            if(this.showType === 'company'){
-                this.form.complain_company_name = item.name;
-            }else{
-                this.form.complain_company_name = item.name;
+        openSelectCause(){
+            this.showType = 'cause';
+            this.selectList = this.causeList;
+            this.show = true;
+        },
+        openSelectDate(){
+            this.showDate = true;
+        },
+        confirmDate(date){
+            this.form.complain_incident_time = moment(date).format(YMDHMS);
+            this.showDate = false;
+        },
+        onSelect(item){
+            switch(this.showType){
+                case 'company':
+                    this.form.complain_company_name = item.name;
+                    this.form.complain_company_code = item.company_code;
+                    this.show = false;
+                    break;
+                case 'skill':
+                    this.form.complain_skills = item.code;
+                    this.form.complain_skillsName = item.name;
+                    this.show = false;
+                    break;
+                case 'cause':
+                    const arr = this.selected;
+                    if(arr.includes(item.code)){
+                        const index = arr.findIndex(val => item.code === val);
+                        arr.splice(index, 1);
+                        this.selected = arr;
+                    }else{
+                        // const index = this.causeList.findIndex(item => item.code === item.code);
+                        // this.causeList[index].disabled = false;
+                        this.selected.push(item.code);
+                    }
+                    console.log(this.selected);
+                    this.form.complain_cause = this.selected.join('|');
+                    break;
+                default:
+                    break;
             }
             
-            this.show = false;
+        },
+        async submit(){
+            // const params = this.$route.query;
+            const data = await Postcomplaininfo({ ...this.form });
+            if(data.result === 'True'){
+                Toast('操作成功');
+                this.$router.push({ path: '/complain' });
+            }
+            // if((this.params.information && this.params.type === '0') || this.params.type === '1'){
+                
+            // }else{
+            //     Toast('回复不能为空');
+            //     return;
+            // }
         }
     },
     components: {
@@ -183,6 +326,16 @@ export default {
 </script>
 
 <style lang="scss">
+.cause_list {
+    // display: flex;
+    .van-checkbox {
+        display: inline-block;
+    }
+    .van-checkbox__label {
+        font-size: 12px;
+        color: #323233;
+    }
+}
 .wap_scroll {
     height: calc(100vh - 98px);
     overflow-y: auto;
