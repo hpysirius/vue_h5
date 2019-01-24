@@ -13,15 +13,15 @@
   	        </div>
             <div class="ld_reply">
                 <ul class="ld_list">
-                    <li class="ld_li">
+                    <li class="ld_li" v-for="item in list" :key="item.id">
                         <p class="ld_li_tit">
-                            <span>回复</span>2019-01-06 21:23:21
+                            <span>{{Q_TYPE[item.type]}}</span>{{item.creat_time}}
                         </p>
                         <div class="ld_li_con">
                             <img :src="defaultUrl" />
                             <div class="ld_li_info">
-                                <p class="ld_li_info_tit">昵称名字</p>
-                                <p class="ld_li_info_desc">知乎是中文互联网知名知识分享平台?接一切」为愿景,致力于构建一个人人都可以便捷接入的知识分享网络,让人们便捷地与世界分享知识、经验？</p>
+                                <p class="ld_li_info_tit">{{item.uid}}</p>
+                                <p class="ld_li_info_desc">{{item.information}}</p>
                             </div>
                         </div>
                     </li>
@@ -54,8 +54,9 @@ import Vue from 'vue';
 import { mapState, mapMutations } from 'vuex'
 import { Field, Cell, CellGroup, Button, Toast, RadioGroup, Radio } from 'vant';
 import {
- Postlegalconsultinginfo
+ Getlegalconsultinginfo
 } from "@/service/getData";
+import { Q_TYPE } from '@/utils/constants';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
@@ -68,6 +69,7 @@ Vue.use(Radio);
 export default {
     data(){
         return{
+            Q_TYPE,
             radio: '1',
             params: {
                 // uid: 0,
@@ -86,11 +88,11 @@ export default {
     },
     methods: {
         async getData(){
-            const { uid } = this.$store.state.result
+            // const { uid } = this.$store.state.result
+            const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
             this.loading = true;
             const params = this.$route.query;
-            console.log(params);
-            const data = await Postlegalconsultinginfo({ uid: params.uid || 0, qid: params.id });
+            const data = await Getlegalconsultinginfo({ qid: 0 });
             this.loading = false;
             this.list = (data && data.list) || [];
         },

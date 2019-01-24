@@ -11,7 +11,7 @@
             <Nav></Nav>
             <News :newsList="newsList"></News>
             <a href="http://jzapi.3pgis.cn/apk/jz.apk" class="btn_wrap btn_down">
-                 <van-button @click="submit" type="primary" size="large">APP下载</van-button>
+                 <van-button type="primary" size="large">APP下载</van-button>
             </a>
         </div>
         <Footer></Footer>

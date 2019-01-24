@@ -52,9 +52,11 @@ export default
     path: '/company',
     component: company
   },
+  // 维权
   {
     path: '/complain',
-    component: complain
+    component: complain,
+    meta: { requireAuth: true }
   },
   {
     path: '/comp',
@@ -70,7 +72,8 @@ export default
   },
   {
     path: '/find',
-    component: find
+    component: find,
+    meta: { requireAuth: true }
   },
   {
     path: '/person',
@@ -86,7 +89,8 @@ export default
   },
   {
     path: '/personal',
-    component: personal
+    component: personal,
+    meta: { requireAuth: true }
   },
   {
     path: '/auth',

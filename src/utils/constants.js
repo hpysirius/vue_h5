@@ -4,7 +4,12 @@ export const AUTHSTSTUS = {
 }
 
 export const SKILL_TYPE = {
-  "000": "家政员",
-  "001": "保洁员",
-  "002": "保育员"
+  '000': '家政员',
+  '001': '保洁员',
+  '002': '保育员'
+}
+
+export const Q_TYPE = {
+  0: '追加问题',
+  1: '答复问题'
 }

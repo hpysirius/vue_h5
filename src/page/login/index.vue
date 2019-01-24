@@ -48,8 +48,9 @@ import {
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Skill from '../../components/Skill'
-import { Tab, Tabs, Swipe, SwipeItem, Field, Button, Toast } from 'vant'
+import { Cell, CellGroup, Tab, Tabs, Swipe, SwipeItem, Field, Button, Toast } from 'vant'
 
+Vue.use(Cell).use(CellGroup);
 Vue.use(Button);
 Vue.use(Field);
 Vue.use(Tab).use(Tabs);
@@ -84,6 +85,8 @@ export default {
                     Toast(data.msg || '请求错误');
                 }else{
                     this.$store.commit("SET_RESULT", data);
+                    window.localStorage.setItem('isLogin', '1')
+                    window.localStorage.setItem('result', JSON.stringify(data))
                     this.$router.push({ path: '/', query: data });
                 }
             }else{

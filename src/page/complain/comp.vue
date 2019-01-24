@@ -15,9 +15,20 @@
                             </van-radio-group>
                         </template>
                    </van-cell>
-                   <van-cell title="企业名称" v-model="form.complain_company_name" is-link value="请选择投诉企业" />
+                   <van-cell 
+                    title="企业名称" 
+                    v-model="form.complain_company_name"
+                    is-link 
+                    value="请选择投诉企业"
+                    @click="openSelectCompany"
+                   />
                    <van-cell title="信用代码" value="填写企业后自动填充" />
-                   <van-cell title="服务类型" is-link value="请选择服务类型" />
+                   <van-cell 
+                    title="服务类型"
+                    is-link
+                    value=""
+                    @click="openSelectSkills"
+                   />
                    <van-cell-group>
                     <van-field
                         v-model="message"
@@ -60,12 +71,21 @@
             </div>
         </div>
         <Footer></Footer>
+        <van-actionsheet
+            v-model="show"
+            :actions="selectList"
+            cancel-text="取消"
+            @select="onSelectCompany"
+        />
     </div>
 </template>
 <script>
 import Vue from 'vue';
-import { RadioGroup, Radio, Cell, CellGroup, Field, Button } from 'vant';
+import { RadioGroup, Radio, Cell, CellGroup, Field, Button, Actionsheet } from 'vant';
 import { mapState, mapMutations } from 'vuex'
+import {
+ Pullcompany, Getskills
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ComplainList from '../../components/ComplainList'
@@ -75,9 +95,15 @@ Vue.use(RadioGroup);
 Vue.use(Radio);
 Vue.use(Cell).use(CellGroup);
 Vue.use(Field);
+Vue.use(Actionsheet);
 export default {
     data(){
         return{
+            show: false,
+            showType: '',
+            selectList: [],
+            companyList: [],
+            killsList: [],
             form: {
                 // 投诉企业填写信息
                 complain_type: '0',
@@ -108,9 +134,43 @@ export default {
         }
     },
     computed: {
-         ...mapState([
+        ...mapState([
             'userInfo'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData(){
+            const { uid } = this.$store.state.result
+            const params = this.$route.query;
+            const companyData = await Pullcompany({ uid: params.uid || 0, qid: params.id });
+            this.companyList = (companyData && companyData.list) || [];
+            const killsData = await Getskills({ uid: params.uid || 0, qid: params.id });
+            const killsList = (killsData && killsData.list) || [];
+            this.killsList = killsList.map(item => { return {name: item.skill} });
+            console.log(this.killsList);
+        },
+        openSelectCompany(){
+            this.showType = 'company';
+            this.selectList = this.companyList;
+            this.show = true;
+        },
+        openSelectSkills(){
+            this.showType = 'skill';
+            this.selectList = this.killsList;
+            this.show = true;
+        },
+        onSelectCompany(item){
+            if(this.showType === 'company'){
+                this.form.complain_company_name = item.name;
+            }else{
+                this.form.complain_company_name = item.name;
+            }
+            
+            this.show = false;
+        }
     },
     components: {
         Footer,

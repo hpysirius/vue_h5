@@ -2,17 +2,18 @@
   	<div>
         <Header title="个人中心"></Header>
         <div class="wap_scroll">
-            <van-cell class="me_vancel" title="订单记录（10）" is-link value="待处理" />
-            <van-cell class="me_vancel" title="服务人员（100）" is-link value="查看" />
+            <van-loading type="spinner" v-if="loading" />
+            <!-- <van-cell class="me_vancel" title="订单记录（10）" is-link value="待处理" />
+            <van-cell class="me_vancel" title="服务人员（100）" is-link value="查看" /> -->
             <div class="per_list">
                 <div class="per_li">
-                    <img :src="item.imgUrl" class="per_img" />
+                    <img :src="item.imgUrl || defaultUrl" class="per_img" />
                     <div class="per_info">
                         <div class="per_wrap">
                             <div class="per_left">
                                 <h3>
-                                    {{item.nickname}} 
-                                    <router-link to="./auth">
+                                    {{item.contacts}} 
+                                    <router-link to="./auth" v-if="AUTHSTSTUS[item.status]">
                                         <van-tag 
                                             :color="AUTHSTSTUS[item.status].color" 
                                             plain
@@ -23,7 +24,7 @@
                                 </h3>
                                 <p class="level">星级评价：
                                     <van-rate 
-                                        v-model="item.level"
+                                        v-model="item.star"
                                         :size="10"
                                         color="#00BEAF"
                                         void-color="#00BEAF"
@@ -36,40 +37,40 @@
             </div>
             <van-cell class="me_celtit" title="基础信息" value="修改" />
             <van-field
-                v-model="info.con"
+                v-model="item.con"
                 clearable
                 label="摘要信息"
                 placeholder="请输入摘要信息"
             />
             <van-field
-                v-model="info.service"
+                v-model="item.skills"
                 clearable
                 label="服务项目"
                 placeholder="请输入服务项目"
             />
             <van-cell class="me_celtit" title="联系信息" value="修改" />
             <van-field
-                v-model="info.phone"
+                v-model="item.telphone"
                 clearable
                 label="联系信息"
                 placeholder="请输入联系信息"
             />
             <van-field
-                v-model="info.address"
+                v-model="item.adress"
                 clearable
                 label="联系地址"
                 placeholder="请输入联系地址"
             />
             <van-cell class="me_celtit" title="所属企业" value="绑定" />
             <van-field
-                v-model="info.company"
+                v-model="item.company"
                 clearable
                 label="企业名称"
                 placeholder="请输入企业名称"
             />
             <van-field
                 class="end"
-                v-model="info.code"
+                v-model="item.code"
                 clearable
                 label="信用代码"
                 placeholder="请输入信用代码"
@@ -80,8 +81,11 @@
 </template>
 <script>
 import Vue from 'vue';
-import { Cell, CellGroup, Tag, Rate, Field } from 'vant';
+import { Cell, CellGroup, Tag, Rate, Field, Loading, Toast } from 'vant';
 import { mapState, mapMutations } from 'vuex'
+import {
+    Getuserinfo, Getskills
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import FindList from '../../components/FindList'
@@ -91,34 +95,43 @@ Vue.use(Cell).use(CellGroup);
 Vue.use(Tag);
 Vue.use(Rate);
 Vue.use(Field);
+Vue.use(Loading);
+Vue.use(Toast);
 
 export default {
     data(){
         return{
+            loading: false,
             AUTHSTSTUS,
-            item: {
-                id: 0,
-                status: 0,
-                nickname: '昵称名字',
-                level: 4,
-                phone: '18030728562',
-                imgUrl: require('../../assets/find.png'),
-                desc: '服务项目：住家保姆、钟点工、打扫卫生、煮饭、收拾房间等...'
-            },
-            info: {
-                con: '内容内容内容',
-                service: '煮饭、打扫卫生',
-                phone: '18030728562',
-                address: '四川省成都市',
-                company: '未绑定',
-                code: '098766789'
-            }
+            item: {}
         }
     },
     computed: {
          ...mapState([
-            'userInfo'
+            'userInfo', 'result', 'defaultUrl'
         ]),
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData() {
+            const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
+            this.loading = true;
+            const data =  await Getuserinfo({ user_type, ufid });
+            if(data.result === 'True'){
+                const { list } = await Getskills({ uid: uid || 0 });
+                data.skills = data.skills.split('|').map(item => {
+                    const findItem = list.find(skill => skill.code === item)
+                    return findItem.skill
+                }).join(',')
+                this.loading = false;
+                this.item = data;
+            }else{
+                this.item = {};
+                Toast('暂无数据');
+            }
+        }
     },
     components: {
         Footer,

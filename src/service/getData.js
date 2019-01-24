@@ -36,3 +36,7 @@ export const Register = params => fetch('/Register', params, 'get')
 export const Getuserinfo = params => fetch('/Getuserinfo', params, 'get')
 // 12.用户咨询问题列表
 export const Getlegalconsulting = params => fetch('/Getlegalconsulting', params, 'get')
+// 16.合同模版
+export const Getcontracttemplates = params => fetch('/Getcontracttemplates', params, 'get')
+// 22.法律咨询附加信息查询（咨询详情）
+export const Getlegalconsultinginfo = params => fetch('/Getlegalconsultinginfo', params, 'get')
