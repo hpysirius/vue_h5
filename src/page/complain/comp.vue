@@ -14,7 +14,7 @@
                             </van-radio-group>
                         </template>
                    </van-cell>
-                   <van-cell-group v-if="form.complain_type === '0'">
+                <van-cell-group v-if="form.complain_type === '0'">
                     <van-cell 
                         title="企业名称" 
                         v-model="form.complain_company_name"
@@ -91,16 +91,57 @@
                         @click="openSelectDate"
                     />
                 </van-cell-group>
+                <van-cell-group v-if="form.complain_type === '2'">
+                    <van-field label="姓名" v-model="form.complain_employer_name" placeholder="请填写姓名" />
+                    <van-field label="身份证号" v-model="form.complain_id_card" placeholder="请填写身份证号" />
+                    <van-field label="联系电话" v-model="form.complain_telphone" placeholder="请填写联系电话" />
+                    <van-cell 
+                        title="服务类型"
+                        is-link
+                        v-model="form.complain_skillsName"
+                        @click="openSelectSkills"
+                    />
+                    <!-- <van-checkbox-group class="cause_list" v-model="form.complain_cause">
+                        <van-checkbox
+                            v-for="(item) in causeList"
+                            :key="item.code"
+                            :name="item.cause"
+                        >   
+                         {{ item.cause }}
+                        </van-checkbox>
+                    </van-checkbox-group> -->
+                    <van-field
+                        v-model="form.complain_complain_info"
+                        label="投诉说明"
+                        type="textarea"
+                        placeholder="请填写投诉说明，最多不超过300字"
+                        rows="4"
+                        autosize
+                    />
+                    <van-cell 
+                        title="事发时间" 
+                        v-model="form.complain_incident_time"
+                        is-link 
+                        value="请选择事发时间"
+                        @click="openSelectDate"
+                    />
+                </van-cell-group>
             </div>
             <h3 class="com_tit">投诉人信息</h3>
             <div class="com_con">
-                
                    <van-cell title="单元格">
                         <template slot="title"> 
                             <span class="comvan-title">投诉对象：</span>
-                            <van-radio-group v-model="form.plaintiff_type">
+                            <van-radio-group v-if="form.complain_type === '0'" v-model="form.plaintiff_type">
                                 <van-radio name="0">家政人员</van-radio>
                                 <van-radio name="1">雇主</van-radio>
+                            </van-radio-group>
+                            <van-radio-group v-if="form.complain_type === '1'" v-model="form.plaintiff_type">
+                                <van-radio name="1">雇主</van-radio>
+                                <van-radio name="2">公司</van-radio>
+                            </van-radio-group>
+                            <van-radio-group v-if="form.complain_type === '2'" v-model="form.plaintiff_type">
+                                <van-radio name="0">家政人员</van-radio>
                                 <van-radio name="2">公司</van-radio>
                             </van-radio-group>
                         </template>
@@ -114,16 +155,6 @@
                     <van-field label="联系人" v-model="form.paintiff_contacts" placeholder="请填写姓名" />
                     <van-field label="联系电话" v-model="form.plaintiff_telphone" placeholder="请填写联系电话" />
                    </van-cell-group>
-                   <!-- <van-field
-                        v-model="sms"
-                        center
-                        clearable
-                        label="验证码"
-                        placeholder="请输入验证码"
-                    >
-                        <van-button slot="button" size="small" plain type="primary">获取验证码</van-button>
-                    </van-field> -->
-                
             </div>
             <div class="btn">
                 <van-button @click="submit" size="large" type="default">查询</van-button>
@@ -184,6 +215,7 @@ export default {
             killsList: [],
             causeList: '',
             selected: [],
+            selectedName: [],
             complain_cause_name: '',
             currentDate: new Date(),
             minDate: new Date(2010, 10, 1),
@@ -271,7 +303,8 @@ export default {
         },
         onSelect(item){
             switch(this.showType){
-                case 'company':
+                case 'company': 
+                    this.form.complain_companies_company_name = item.name;
                     this.form.complain_company_name = item.name;
                     this.form.complain_company_code = item.company_code;
                     this.show = false;
@@ -286,13 +319,18 @@ export default {
                     if(arr.includes(item.code)){
                         const index = arr.findIndex(val => item.code === val);
                         arr.splice(index, 1);
+                        this.selectedName.splice(index, 1);
                         this.selected = arr;
                     }else{
-                        // const index = this.causeList.findIndex(item => item.code === item.code);
-                        // this.causeList[index].disabled = false;
                         this.selected.push(item.code);
+                        this.selectedName.push(item.name);
+                        const index = this.causeList.findIndex(cause => item.code === cause.code);
+                        this.causeList[index].className = 'active';
+                        console.log(this.causeList);
+                        this.selectList = this.causeList;
                     }
-                    console.log(this.selected);
+                    console.log(this.selectedName);
+                    this.complain_cause_name = this.selectedName.join(',');
                     this.form.complain_cause = this.selected.join('|');
                     break;
                 default:
