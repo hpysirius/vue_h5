@@ -4,26 +4,35 @@
         <div class="wap_scroll">
             <h3 class="com_tit"></h3>
             <div class="com_con">
-                <van-cell-group>
-                   <!-- <van-cell title="单元格">
-                        <template slot="title"> 
-                            <span class="comvan-title">用户名:</span>
-                            <van-radio-group v-model="radio">
-                                <van-radio name="1">普通用户</van-radio>
-                                <van-radio name="2">家政企业</van-radio>
-                                <van-radio name="3">家政从业人员</van-radio>
-                            </van-radio-group>
-                        </template> -->
-                   <!-- </van-cell> -->
-                   <van-cell title="用户名" value="请输入用户名" />
-                   <van-cell title="联系电话" value="请输入联系电话" />
-                   <van-cell title="密码" value="请输入用户登录新密码" />
-                   <van-cell title="确认密码" value="请再次输入密码" />
-                   <van-cell title="验证码" value="请输入验证码" />
-                </van-cell-group>
+                <van-field
+                    label="用户名"
+                    v-model="params.username"
+                    placeholder="请输入用用户名"
+                    :error="false"
+                />
+                <van-field
+                    label="联系电话"
+                    v-model="params.telphone"
+                    placeholder="请输入用联系电话"
+                    :error="false"
+                />
+                <van-field
+                    label="密码"
+                    v-model="params.pwd"
+                    type="password"
+                    placeholder="请输入用户密码"
+                    :error="false"
+                />
+                <van-field
+                    label="确认密码"
+                    v-model="params.confirm"
+                    type="password"
+                    placeholder="请输入用户确认密码"
+                    :error="false"
+                />
             </div>
             <div class="btn">
-                <van-button size="large" type="default">提交</van-button>
+                <van-button @click="submit" size="large" type="default">提交</van-button>
             </div>
         </div>
         <Footer></Footer>
@@ -31,8 +40,11 @@
 </template>
 <script>
 import Vue from 'vue';
-import { RadioGroup, Radio, Cell, CellGroup, Field, Button } from 'vant';
+import { RadioGroup, Radio, Cell, CellGroup, Field, Button, Toast } from 'vant';
 import { mapState, mapMutations } from 'vuex'
+import {
+ Updatepwd
+} from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ComplainList from '../../components/ComplainList'
@@ -42,17 +54,47 @@ Vue.use(RadioGroup);
 Vue.use(Radio);
 Vue.use(Cell).use(CellGroup);
 Vue.use(Field);
+Vue.use(Toast);
 export default {
     data(){
         return{
             a: 1,
-            radio: '1'
+            radio: '1',
+            params: {
+
+            }
         }
     },
     computed: {
          ...mapState([
             'userInfo'
         ]),
+    },
+    methods: {
+        async submit(){
+            if(this.params.username && this.params.pwd){
+                if(this.params.pwd === this.params.confirm){
+                    delete this.params.confirm;
+                    const data = await Updatepwd(this.params);
+                    if(data.result === 'False'){
+                        Toast(data.msg || '请求错误');
+                    }else{
+                        Toast(data.msg || '操作成功');
+                        // this.$store.commit("SET_RESULT", data);
+                        // window.localStorage.setItem('isLogin', '1')
+                        // window.localStorage.setItem('result', JSON.stringify(data))
+                        this.$router.push({ path: '/login', query: data });
+                    }
+                }else{
+                    Toast('两次密码不一致');
+                    return;
+                }
+                
+            }else{
+                Toast('用户名或密码不能为空');
+                return;
+            }
+        }
     },
     components: {
         Footer,

@@ -35,14 +35,14 @@
                     label="密码"
                     v-model="params.pwd"
                     type="password"
-                    placeholder="请输入用密码"
+                    placeholder="请输入用户密码"
                     :error="false"
                 />
                 <van-field
                     label="确认密码"
                     v-model="params.confirm"
                     type="password"
-                    placeholder="请输入用确认密码"
+                    placeholder="请输入用户确认密码"
                     :error="false"
                 />
             </div>

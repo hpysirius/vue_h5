@@ -32,6 +32,9 @@ export const Postlegalconsultinginfo = params => fetch('/Postlegalconsultinginfo
 export const Login = params => fetch('/Login', params, 'get')
 // 20.用户注册
 export const Register = params => fetch('/Register', params, 'get')
+// 20.修改密码
+export const Updatepwd = params => fetch('/Updatepwd', params, 'get')
+
 // 21.用户信息查询（个人中心）
 export const Getuserinfo = params => fetch('/Getuserinfo', params, 'get')
 // 12.用户咨询问题列表

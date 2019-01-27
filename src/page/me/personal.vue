@@ -36,12 +36,12 @@
                 </div>
             </div>
             <van-cell class="me_celtit" title="基础信息" value="修改" />
-            <van-field
+            <!-- <van-field
                 v-model="item.con"
                 clearable
                 label="摘要信息"
                 placeholder="请输入摘要信息"
-            />
+            /> -->
             <van-field
                 v-model="item.skills"
                 clearable
@@ -119,13 +119,14 @@ export default {
             const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
             this.loading = true;
             const data =  await Getuserinfo({ user_type, ufid });
+            this.loading = false;
             if(data.result === 'True'){
                 const { list } = await Getskills({ uid: uid || 0 });
                 data.skills = data.skills.split('|').map(item => {
                     const findItem = list.find(skill => skill.code === item)
                     return findItem.skill
                 }).join(',')
-                this.loading = false;
+                
                 this.item = data;
             }else{
                 this.item = {};
