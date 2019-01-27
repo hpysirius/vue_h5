@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <van-cell class="me_celtit" title="基础信息" value="修改" />
+            <van-cell class="me_celtit" title="基础信息" />
             <!-- <van-field
                 v-model="item.con"
                 clearable
@@ -47,26 +47,31 @@
                 clearable
                 label="服务项目"
                 placeholder="请输入服务项目"
+                disabled
             />
-            <van-cell class="me_celtit" title="联系信息" value="修改" />
+            <van-cell class="me_celtit" title="联系信息" />
             <van-field
                 v-model="item.telphone"
                 clearable
                 label="联系信息"
                 placeholder="请输入联系信息"
+                disabled
             />
             <van-field
                 v-model="item.adress"
                 clearable
                 label="联系地址"
                 placeholder="请输入联系地址"
+                disabled
             />
+            <div v-if="user_type === 1">
             <van-cell class="me_celtit" title="所属企业" value="绑定" />
             <van-field
                 v-model="item.company"
                 clearable
                 label="企业名称"
                 placeholder="请输入企业名称"
+                disabled
             />
             <van-field
                 class="end"
@@ -74,7 +79,9 @@
                 clearable
                 label="信用代码"
                 placeholder="请输入信用代码"
+                disabled
             />
+            </div>
         </div>
         <Footer></Footer>
     </div>
@@ -101,6 +108,7 @@ Vue.use(Toast);
 export default {
     data(){
         return{
+            user_type: '',
             loading: false,
             AUTHSTSTUS,
             item: {}
@@ -117,16 +125,18 @@ export default {
     methods: {
         async getData() {
             const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
+            this.user_type = user_type;
             this.loading = true;
             const data =  await Getuserinfo({ user_type, ufid });
             this.loading = false;
             if(data.result === 'True'){
-                const { list } = await Getskills({ uid: uid || 0 });
-                data.skills = data.skills.split('|').map(item => {
-                    const findItem = list.find(skill => skill.code === item)
-                    return findItem.skill
-                }).join(',')
-                
+                if(data.skills){
+                    const { list } = await Getskills({ uid: uid || 0 });
+                    data.skills = data.skills.split('|').map(item => {
+                        const findItem = list.find(skill => skill.code === item)
+                        return findItem.skill
+                    }).join(',')
+                }
                 this.item = data;
             }else{
                 this.item = {};
