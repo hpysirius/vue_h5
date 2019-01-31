@@ -32,7 +32,9 @@
                                 </p> -->
                             </div>
                             <div class="per_right">
-                                <van-button type="primary">雇佣</van-button>
+                                <router-link to="./employ" class="employ_link">
+                                    <van-button type="primary">雇佣</van-button>
+                                </router-link>
                             </div>
                         </div>
                         <div class="per_desc">
@@ -82,7 +84,7 @@ export default {
     methods: {
         async getData() {
             this.loading = true;
-           const personList =  await Pullpractitioner();
+            const personList =  await Pullpractitioner();
             const skills = await Getskills();
             this.loading = false;
             const list = (personList && personList.list) || [];

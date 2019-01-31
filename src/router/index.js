@@ -10,6 +10,7 @@ const comp = r => require.ensure([], () => r(require('../page/complain/comp')), 
 const low = r => require.ensure([], () => r(require('../page/complain/low')), 'low')
 const contract = r => require.ensure([], () => r(require('../page/complain/contract')), 'contract')
 const find = r => require.ensure([], () => r(require('../page/find/index')), 'find')
+const employ = r => require.ensure([], () => r(require('../page/find/employ')), 'employ')
 const person = r => require.ensure([], () => r(require('../page/find/person')), 'person')
 const findcompany = r => require.ensure([], () => r(require('../page/find/findcompany')), 'findcompany')
 const history = r => require.ensure([], () => r(require('../page/find/history')), 'history')
@@ -119,5 +120,9 @@ export default
   {
     path: '/lowDetail',
     component: lowDetail
+  },
+  {
+    path: '/employ',
+    component: employ
   }
 ]

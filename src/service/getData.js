@@ -45,5 +45,7 @@ export const Getcontracttemplates = params => fetch('/Getcontracttemplates', par
 export const Getlegalconsultinginfo = params => fetch('/Getlegalconsultinginfo', params, 'get')
 // 15.追加问题/回复
 export const Postcomplaininfo = params => fetch('/Postcomplaininfo', params, 'post', '')
+// 25.申请服务（创建订单）
+export const Creatorder = params => fetch('/Creatorder', params, 'post', '')
 // 15.投诉原因列表
 export const Getcause = params => fetch('/Getcause', params, 'get')

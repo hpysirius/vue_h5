@@ -37,12 +37,12 @@ export default {
                     desc: '劳动合同，服务合同模版下载',
                     url: './contract',
                 },
-                {
-                    imgUrl: require('../assets/find.png'),
-                    tit: '黑名单',
-                    desc: '家政人员，家政公司黑名单查询',
-                    url: './company',
-                }
+                // {
+                //     imgUrl: require('../assets/find.png'),
+                //     tit: '黑名单',
+                //     desc: '家政人员，家政公司黑名单查询',
+                //     url: './company',
+                // }
             ]
         }
     },
