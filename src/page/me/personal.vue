@@ -82,6 +82,9 @@
                 disabled
             />
             </div>
+            <div class="btn">
+                <van-button size="large" @click="logout" type="default">退出登录</van-button>
+            </div>
         </div>
         <Footer></Footer>
     </div>
@@ -123,6 +126,10 @@ export default {
         this.getData();
     },
     methods: {
+        async logout(){
+            window.localStorage.setItem('isLogin', '');
+            this.$router.push({ path: '/login', query: {} });
+        },
         async getData() {
             const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
             this.user_type = user_type;
@@ -243,5 +250,17 @@ export default {
 }
 .end {
     margin-bottom: 20px;
+}
+.btn {
+    margin: 10px 0;
+    padding: 16px;
+    background-color: #fff;
+    .van-button--large {
+        background: #00BEAF;
+        border-radius: 8px;
+        .van-button__text {
+            color: #fff;
+        }
+    }
 }
 </style>
