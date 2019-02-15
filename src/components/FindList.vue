@@ -33,9 +33,9 @@ export default {
                 },
                 {
                     imgUrl: require('../assets/find.png'),
-                    tit: '订单记录',
-                    desc: '历史订单列表',
-                    url: './history',
+                    tit: '申请服务',
+                    desc: '申请服务功能',
+                    url: './employ',
                 }
             ]
         }

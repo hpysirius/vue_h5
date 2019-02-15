@@ -27,23 +27,24 @@
                     </li>
                 </ul>
             </div>
-
-            <p class="label_radio">
-                <van-radio-group v-model="params.type">
-                    <van-radio name="0">继续咨询</van-radio>
-                    <van-radio name="1">已解决</van-radio>
-                </van-radio-group>
-            </p>
-            <van-field
-                class="textarea_input"
-                v-model="params.information"
-                type="textarea"
-                placeholder="请输入回复"
-                rows="8"
-                autosize
-            />
-            <div class="btn_wrap">
-                <van-button @click="submit" size="large">提交</van-button>
+            <div v-if="item.status === 0">
+                <p class="label_radio">
+                    <van-radio-group v-model="params.type">
+                        <van-radio name="0">继续咨询</van-radio>
+                        <van-radio name="1">已解决</van-radio>
+                    </van-radio-group>
+                </p>
+                <van-field
+                    class="textarea_input"
+                    v-model="params.information"
+                    type="textarea"
+                    placeholder="请输入回复"
+                    rows="8"
+                    autosize
+                />
+                <div class="btn_wrap">
+                    <van-button @click="submit" size="large">提交</van-button>
+                </div>
             </div>
         </div>
         <Footer></Footer>

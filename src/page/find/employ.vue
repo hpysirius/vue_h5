@@ -37,6 +37,7 @@
             />
             <h3 class="com_tit">公司信息</h3>
             <van-cell 
+                v-if="type === 'company'"
                 title="家政公司" 
                 v-model="form.company"
                 is-link 
@@ -44,6 +45,7 @@
                 @click="openSelectCompany"
             />
             <van-cell 
+                v-if="type === 'person'"
                 title="家政人员" 
                 v-model="form.oner"
                 is-link 
@@ -152,6 +154,7 @@ export default {
     },
     created() {
         this.getData();
+        this.type = this.$route.query.type;
     },
     methods: {
         async getData() {

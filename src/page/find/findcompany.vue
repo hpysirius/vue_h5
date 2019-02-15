@@ -33,7 +33,9 @@
                                 </p>
                             </div>
                             <div class="per_right">
-                                <van-button type="primary">订单</van-button>
+                                <router-link :to="{ path:'/employ', query:{type: 'company'} }" class="employ_link">
+                                    <van-button type="primary">申请服务</van-button>
+                                </router-link>
                             </div>
                         </div>
                         <div class="per_desc">
@@ -155,7 +157,7 @@ export default {
         }
         .per_right {
             .van-button--primary {
-                width: 64px;
+                // width: 64px;
                 height: 32px;
                 line-height: 32px;
                 background: #00BEAF;

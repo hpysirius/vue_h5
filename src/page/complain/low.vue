@@ -12,7 +12,7 @@
                 <li v-for="item in list" :key="item.id" class="low_li">
                     <router-link :to="{path: './lowDetail', query: item}" class="low_link">
                         <img :src="item.imgUrl || imageUrl" />
-                        <div class="low_txt">
+                        <div class="low_txt" :style="{backgroundImage: item.status === 0 ? status0 : status1}">
                             <h3>{{item.title}}</h3>
                             <p><span>问题：</span>{{item.question}}</p>
                             <p><span>更新时间：</span>{{item.creat_time}}</p>
@@ -33,6 +33,7 @@ import {
 } from "@/service/getData";
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+// import { LSTATUS } from '../../utils/constants';
 
 Vue.use(Button);
 Vue.use(Loading);
@@ -41,6 +42,8 @@ export default {
         return{
             a: 1,
             loading: false,
+            status0:'url(' + require('../../assets/low_status0.png') + ')',
+            status1:'url(' + require('../../assets/low_status1.png') + ')',
             imageUrl: require('../../assets/find.png'),
             list: []
         }
@@ -108,6 +111,9 @@ export default {
         width: calc(100% - 137px);
         display: inline-block;
         padding: 7px 2px 0 10px;
+        background-size: 67px 58px;
+        background-position: right center;
+        background-repeat: no-repeat;
     }
     .low_txt h3{
         font-weight: normal;
