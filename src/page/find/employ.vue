@@ -218,7 +218,6 @@ export default {
             this.show = true;
         },
         onSelect(item){
-            console.log(item);
             switch(this.showType){
                 case 'company': 
                     this.form.company = item.name;
@@ -250,7 +249,6 @@ export default {
                         console.log(this.causeList);
                         this.selectList = this.causeList;
                     }
-                    console.log(this.selectedName);
                     this.complain_cause_name = this.selectedName.join(',');
                     this.form.complain_cause = this.selected.join('|');
                     break;
