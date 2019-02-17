@@ -33,7 +33,7 @@
                                 </p>
                             </div>
                             <div class="per_right">
-                                <router-link :to="{ path:'/employ', query:{type: 'company'} }" class="employ_link">
+                                <router-link :to="{ path:'/employ', query:{type: 'company', id: item.id, name: item.name} }" class="employ_link">
                                     <van-button type="primary">申请服务</van-button>
                                 </router-link>
                             </div>

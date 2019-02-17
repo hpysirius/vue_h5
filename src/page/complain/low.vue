@@ -58,7 +58,8 @@ export default {
     },
     methods: {
         async getData(){
-            const { uid } = this.$store.state.result
+            // const { uid } = this.$store.state.result
+            const { uid } = JSON.parse(window.localStorage.getItem('result'));
             this.loading = true;
             const data = await Getlegalconsulting({ uid: uid || 0 });
             this.loading = false;

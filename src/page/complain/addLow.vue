@@ -52,7 +52,8 @@ export default {
     },
     methods: {
         async submit(){
-            const { uid } = this.$store.state.result
+            // const { uid } = this.$store.state.result
+            const { uid } = JSON.parse(window.localStorage.getItem('result'));
             if(this.params.title && this.params.question){
                 const data = await Postlegalconsulting({ ...this.params, uid: uid || 0 });
                 if(data.result === 'True'){

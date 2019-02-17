@@ -263,7 +263,8 @@ export default {
     },
     methods: {
         async getData(){
-            const { uid } = this.$store.state.result
+            // const { uid } = this.$store.state.result
+            const { uid } = JSON.parse(window.localStorage.getItem('result'));
             const params = this.$route.query;
             const companyData = await Pullcompany({ uid: params.uid || 0, qid: params.id });
             this.companyList = (companyData && companyData.list) || [];

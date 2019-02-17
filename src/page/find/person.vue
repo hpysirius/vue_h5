@@ -31,8 +31,8 @@
                                     {{item.phone}}
                                 </p> -->
                             </div>
-                            <div class="per_right">
-                                <router-link :to="{ path:'/employ', query:{type: 'person'} }" class="employ_link">
+                            <div class="sper_right">
+                                <router-link :to="{ path:'/employ', query:{type: 'person', id: item.id, name: item.name} }" class="employ_link">
                                     <van-button type="primary">申请服务</van-button>
                                 </router-link>
                             </div>
@@ -154,7 +154,7 @@ export default {
                 line-height: 20px;
             }
         }
-        .per_right {
+        .sper_right {
             .van-button--primary {
                 // width: 64px;
                 height: 32px;

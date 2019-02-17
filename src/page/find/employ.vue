@@ -155,6 +155,16 @@ export default {
     created() {
         this.getData();
         this.type = this.$route.query.type;
+        const name = this.$route.query.name;
+        const id = this.$route.query.id;
+        if(this.type === 'person'){
+            this.form.oner = name;
+            this.form.ufid = id;
+        }
+        if(this.type === 'company'){
+            this.form.company = name;
+            this.form.company_id = id;
+        }
     },
     methods: {
         async getData() {
