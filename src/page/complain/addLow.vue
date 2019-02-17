@@ -2,7 +2,7 @@
   	<div>
         <Header title="新建咨询"></Header>
         <div class="wap_scroll add_low">
-            <p class="label">回复</p>
+            <!-- <p class="label">回复</p> -->
             <van-cell-group>
                 <van-field label="标题" v-model="params.title" placeholder="请输入标题" />
             </van-cell-group>
