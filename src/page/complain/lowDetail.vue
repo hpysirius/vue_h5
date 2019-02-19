@@ -27,7 +27,7 @@
                     </li>
                 </ul>
             </div>
-            <div v-if="item.status === 0">
+            <div v-if="+item.status === 0">
                 <p class="label_radio">
                     <van-radio-group v-model="params.type">
                         <van-radio name="0">继续咨询</van-radio>
@@ -56,7 +56,8 @@ import { mapState, mapMutations } from 'vuex'
 import { Field, Cell, CellGroup, Button, Toast, RadioGroup, Radio } from 'vant';
 import {
  Getlegalconsultinginfo,
- Postlegalconsultinginfo
+ Postlegalconsultinginfo,
+ Updatelegalconsulting
 } from "@/service/getData";
 import { Q_TYPE } from '@/utils/constants';
 import Header from '../../components/Header'
@@ -100,15 +101,28 @@ export default {
         },
         async submit(){
             const params = this.$route.query;
-            if((this.params.information && this.params.type === '0') || this.params.type === '1'){
-                const data = await Postlegalconsultinginfo({ ...this.params, uid: params.uid, qid: params.id });
+            if(this.params.type === '0'){
+                if(this.params.information){
+                    const data = await Postlegalconsultinginfo({ ...this.params, uid: params.uid, qid: params.id, type: 0 });
+                    // if(this.params.type === '1'){
+                    // await Updatelegalconsulting({ status: this.params.type, qid: params.id });
+                    // }
+                    if(data.result === 'True'){
+                        Toast('操作成功');
+                        this.$router.push({ path: '/low' });
+                    }
+                }else{
+                    Toast('回复不能为空');
+                    return;
+                }
+            }
+            if(this.params.type === '1'){
+                await Postlegalconsultinginfo({ ...this.params, uid: params.uid, qid: params.id, type: 0 });
+                const data = await Updatelegalconsulting({ status: this.params.type, qid: params.id });
                 if(data.result === 'True'){
                     Toast('操作成功');
                     this.$router.push({ path: '/low' });
                 }
-            }else{
-                Toast('回复不能为空');
-                return;
             }
         }
     },

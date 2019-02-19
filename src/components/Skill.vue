@@ -3,7 +3,7 @@
         <ul class="skill_container">
             <li v-for="item in list" :key="item.id" class="sk_li">
                 <div @click="showVideo(item.video_url)" class="sk_link">
-                    <img :src="item.imgUrl || videoImgurl" />
+                    <img :src="item.ico_url || videoImgurl" />
                     <div class="sk_txt">
                         <h3>{{item.video_name}}</h3>
                         <p>{{item.video_info}}</p>

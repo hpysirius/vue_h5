@@ -65,13 +65,24 @@
             </div>
         </div>
         <Footer></Footer>
-         <van-popup v-model="showDate" position="bottom" :overlay="true">
+         <van-popup v-model="showStartDate" position="bottom" :overlay="true">
             <van-datetime-picker
                 v-model="currentDate"
                 type="datetime"
-                :min-date="minDate"
+                :min-date="minStartDate"
                 :max-date="maxDate"
                 @confirm="confirmDate"
+                :formatter="formatter"
+            />
+        </van-popup>
+        <van-popup v-model="showEndDate" position="bottom" :overlay="true">
+            <van-datetime-picker
+                v-model="currentDate"
+                type="datetime"
+                :min-date="minEndDate"
+                :max-date="maxDate"
+                @confirm="confirmDate"
+                :formatter="formatter"
             />
         </van-popup>
         <van-actionsheet
@@ -140,11 +151,13 @@ export default {
                 oner: '', // 服务家政人员
                 ufid: '', // 家政人员id
             },
-            showDate: false,
+            showStartDate: false,
+            showEndDate: false,
             showDateType: '',
             currentDate: new Date(),
-            minDate: new Date(2010, 10, 1),
-            maxDate: new Date()
+            minStartDate: new Date(),
+            minEndDate: new Date(),
+            maxDate: new Date(2030, 10, 1),
         }
     },
     computed: {
@@ -167,6 +180,20 @@ export default {
         }
     },
     methods: {
+        formatter(type, value) {
+            if (type === 'year') {
+                return `${value}年`;
+            } else if (type === 'month') {
+                return `${value}月`
+            } else if( type === 'day') {
+                return `${value}日`
+            } else if( type === 'hour') {
+                return `${value}时`
+            } else if( type === 'minute') {
+                return `${value}分`
+            }
+            return value;
+        },
         async getData() {
             const { user_type, ufid, uid } = JSON.parse(window.localStorage.getItem('result'));
             this.user_type = user_type;
@@ -194,17 +221,27 @@ export default {
             }
         },
         openSelectDate(type){
-            this.showDate = true;
+            // this.showDate = true;
             this.showDateType = type;
+            if(type === 'start_time'){
+                this.showStartDate = true;
+            }else{
+                this.showEndDate = true;
+            }
         },
         confirmDate(date){
+            console.log(this.showDateType);
             this.form[this.showDateType] = moment(date).format(YMDHMS);
+            if(this.showDateType === 'start_time'){
+                this.minEndDate = date;
+            }
             if(this.form.start_time && this.form.end_time){
                 const m2 = moment(this.form.end_time);
                 const m1 = moment(this.form.start_time);
                 this.form.days = moment.duration(m2 - m1, 'ms')/86400000
             }
-            this.showDate = false;
+            this.showStartDate = false;
+            this.showEndDate = false;
             this.showDateType = '';
         },
         openSelectCompany(){
