@@ -145,11 +145,11 @@ export default {
             form: {
                 days: '',
                 company: '',
-                company_id: '',
+                company_id: 0,
                 start_time: '',
                 end_time: '',
                 oner: '', // 服务家政人员
-                ufid: '', // 家政人员id
+                ufid: 0, // 家政人员id
             },
             showStartDate: false,
             showEndDate: false,
@@ -283,7 +283,6 @@ export default {
                         this.selectedName.push(item.name);
                         const index = this.causeList.findIndex(cause => item.code === cause.code);
                         this.causeList[index].className = 'active';
-                        console.log(this.causeList);
                         this.selectList = this.causeList;
                     }
                     this.complain_cause_name = this.selectedName.join(',');
@@ -300,7 +299,7 @@ export default {
             this.form.skills = this.params.result.join('|');
             const data = await Creatorder({ ...this.form, uid });
             if(data.result === 'True'){
-                Toast('操作成功');
+                Toast(data.msg || '操作成功');
                 this.$router.push({ path: '/person' });
             }
             // if((this.params.information && this.params.type === '0') || this.params.type === '1'){
