@@ -18,5 +18,6 @@ export const Q_TYPE = {
 }
 
 export const YMD = 'YYYY-MM-DD'
+export const YMDH = 'YYYY-MM-DD HH'
 export const YMDHM = 'YYYY-MM-DD HH:mm'
 export const YMDHMS = 'YYYY-MM-DD HH:mm:ss'

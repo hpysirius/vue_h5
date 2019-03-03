@@ -110,7 +110,7 @@ import {
     Creatorder,
     Pullpractitioner
 } from "@/service/getData";
-import { YMDHMS } from '@/utils/constants'
+import { YMDH } from '@/utils/constants'
 import moment from 'moment';
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -231,14 +231,14 @@ export default {
         },
         confirmDate(date){
             console.log(this.showDateType);
-            this.form[this.showDateType] = moment(date).format(YMDHMS);
+            this.form[this.showDateType] = moment(date).format(YMDH);
             if(this.showDateType === 'start_time'){
                 this.minEndDate = date;
             }
             if(this.form.start_time && this.form.end_time){
                 const m2 = moment(this.form.end_time);
                 const m1 = moment(this.form.start_time);
-                this.form.days = moment.duration(m2 - m1, 'ms')/86400000
+                this.form.days = (moment.duration(m2 - m1, 'ms')/86400000).toFixed(1);
             }
             this.showStartDate = false;
             this.showEndDate = false;
@@ -300,7 +300,8 @@ export default {
             const data = await Creatorder({ ...this.form, uid });
             if(data.result === 'True'){
                 Toast(data.msg || '操作成功');
-                this.$router.push({ path: '/person' });
+                window.history.go(-1);
+                // this.$router.push({ path: '/person' });
             }
             // if((this.params.information && this.params.type === '0') || this.params.type === '1'){
                 

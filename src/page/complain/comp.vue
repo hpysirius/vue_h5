@@ -76,7 +76,7 @@
                         </template>
                    </van-cell>
                    <van-cell 
-                        v-if="form.complain_companies === '0'"
+                        v-if="form.complain_companies === '1'"
                         title="企业名称" 
                         v-model="form.complain_companies_company_name"
                         is-link 
@@ -157,7 +157,7 @@
                    </van-cell-group>
             </div>
             <div class="btn">
-                <van-button @click="submit" size="large" type="default">查询</van-button>
+                <van-button @click="submit" size="large" type="default">投诉</van-button>
             </div>
         </div>
         <Footer></Footer>
