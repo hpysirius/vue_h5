@@ -31,7 +31,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
         'Content-Type': 'application/json'
       },
       mode: 'cors',
-      cache: 'force-cache'
+      cache: 'no-store'
     }
     if (type === 'POST') {
       Object.defineProperty(requestConfig, 'body', {
